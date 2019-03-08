@@ -1,26 +1,43 @@
 {
-  "name": "ramdaless",
-  "description": "Ramdaless MicroFramework Node",
-  "version": "0.1.0",
-  "author": "Rodrigo Oler <roodrigoprogrammer@gmail.com>",
-  "dependencies": {
-    "ramda": "^0.26.1"
-  },
-  "devDependencies": {
-    "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.3.4",
-    "@babel/preset-env": "^7.3.4",
-    "eslint": "^5.15.1",
-    "eslint-config-standard": "^12.0.0",
-    "eslint-plugin-import": "^2.16.0",
-    "eslint-plugin-node": "^8.0.1",
-    "eslint-plugin-promise": "^4.0.1",
-    "eslint-plugin-standard": "^4.0.0",
-    "husky": "^1.3.1",
-    "lint-staged": "^8.1.5"
-  },
-  "license": "MIT",
-  "main": "dist/index.js",
-  "private": false,
-  "repository": "git@github.com:rodrigooler/ramdaless.git"
+    "name": "ramdaless",
+    "description": "Ramdaless MicroFramework Node",
+    "version": "0.1.0",
+    "author": "Rodrigo Oler <roodrigoprogrammer@gmail.com>",
+    "dependencies": {
+        "ramda": "0.26.1",
+        "uws": "100.0.1"
+    },
+    "devDependencies": {
+        "@babel/cli": "7.2.3",
+        "@babel/core": "7.3.4",
+        "@babel/preset-env": "7.3.4",
+        "eslint": "5.15.1",
+        "eslint-config-standard": "12.0.0",
+        "eslint-plugin-import": "2.16.0",
+        "eslint-plugin-node": "8.0.1",
+        "eslint-plugin-promise": "4.0.1",
+        "eslint-plugin-standard": "4.0.0",
+        "husky": "1.3.1",
+        "lint-staged": "8.1.5"
+    },
+    "eslintConfig": {
+        "env": {
+            "browser": true,
+            "commonjs": true,
+            "es6": true
+        },
+        "extends": "standard",
+        "globals": {
+            "Atomics": "readonly",
+            "SharedArrayBuffer": "readonly"
+        },
+        "parserOptions": {
+            "ecmaVersion": 2018
+        },
+        "rules": {}
+    },
+    "license": "MIT",
+    "main": "dist/index.js",
+    "private": false,
+    "repository": "git@github.com:rodrigooler/ramdaless.git"
 }

@@ -12,8 +12,14 @@ uWebSockets
     // cert_file_name: 'misc/cert.pem', 
     // passphrase: '1234'
   })
-  .get('/*', (res, req) => {
+  .get('/', (res, req) => {
     res.end('Hello World!')
+  })
+  .get('/sign-in', (res, req) => {
+    res.end('SIGN-IN!')
+  })
+  .get('/*', (res, req) => {
+    res.end('ERROR 404!')
   })
   .listen(port, token => {
     if (token) {

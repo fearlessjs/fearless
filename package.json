@@ -5,7 +5,8 @@
     "author": "Rodrigo Oler <roodrigoprogrammer@gmail.com>",
     "dependencies": {
         "ramda": "0.26.1",
-        "uws": "100.0.1"
+        "uWebSockets.js": "uNetworking/uWebSockets.js#v15.4.0",
+        "uws": "^100.0.1"
     },
     "devDependencies": {
         "@babel/cli": "7.2.3",

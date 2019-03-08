@@ -1,19 +1,15 @@
 'use strict'
 
 const uWebSockets = require('uWebSockets.js')
+const ssl = require('./ssl')
+const options = require('./options')
+
 const port = 3000
 
 uWebSockets
-  .SSLApp({
-    // key_file_name: 'misc/key.pem',
-    // cert_file_name: 'misc/cert.pem',
-    // passphrase: '1234'
-  })
+  .SSLApp(ssl)
   .ws('/*', {
-    /* Options */
-    compression: 0,
-    maxPayloadLength: 16 * 1024 * 1024,
-    idleTimeout: 10,
+    ...options,
     /* Handlers */
     open: (ws, req) => {
       console.log('A WebSocket connected via URL: ' + req.getUrl() + '!')

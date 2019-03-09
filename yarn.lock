@@ -2391,6 +2391,11 @@ nice-try@^1.0.4:
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
   integrity sha512-1nh45deeb5olNY7eX82BkPO7SSxR5SSYJiPTrTdFUVYwAl8CKMA5N9PjTYkHiRjisVcxcQ1HXdLhx2qxxJzLNQ==
 
+node-addon-api@^1.6.2:
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/node-addon-api/-/node-addon-api-1.6.2.tgz#d8aad9781a5cfc4132cc2fecdbdd982534265217"
+  integrity sha512-479Bjw9nTE5DdBSZZWprFryHGjUaQC31y1wHo19We/k0BZlrmhqQitWoUL0cD8+scljCbIUL+E58oRDEakdGGA==
+
 node-pre-gyp@^0.10.0:
   version "0.10.3"
   resolved "https://registry.yarnpkg.com/node-pre-gyp/-/node-pre-gyp-0.10.3.tgz#3070040716afdc778747b61b6887bf78880b80fc"
@@ -3057,6 +3062,13 @@ signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
   integrity sha1-tf3AjxKH6hF4Yo5BXiUTK3NkbG0=
+
+simdjson@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/simdjson/-/simdjson-0.0.3.tgz#ccef87b289724615a84217b129a92ea6e18d2d0a"
+  integrity sha512-qpu6j/pu8pyNxhoCa4qPnfwyp2xKDIv9/tGdA8nds63ZX9UZ54VQaZwWNvz3A5aWpd5tFqgCaU21tIcvkoReGA==
+  dependencies:
+    node-addon-api "^1.6.2"
 
 simple-git@^1.85.0:
   version "1.107.0"

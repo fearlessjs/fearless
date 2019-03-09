@@ -3395,9 +3395,9 @@ type-check@~0.3.2:
   dependencies:
     prelude-ls "~1.1.2"
 
-uWebSockets.js@uNetworking/uWebSockets.js#v15.4.0:
-  version "15.4.0"
-  resolved "https://codeload.github.com/uNetworking/uWebSockets.js/tar.gz/23b29ec03b057ee079de99460c212b2620cfe8fe"
+uWebSockets.js@uNetworking/uWebSockets.js#v15.5.0:
+  version "15.5.0"
+  resolved "https://codeload.github.com/uNetworking/uWebSockets.js/tar.gz/7f7d9e6a90cc81c9ad89d1af822ecf6860d80699"
 
 unicode-canonical-property-names-ecmascript@^1.0.4:
   version "1.0.4"

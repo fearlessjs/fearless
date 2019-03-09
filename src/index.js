@@ -11,17 +11,26 @@ const HTTP = Object.freeze({
   POST: 'POST',
   PUT: 'PUT',
   DEL: 'DEL',
+  OPTIONS: 'OPTIONS',
+  PATCH: 'PATCH',
+  HEAD: 'HEAD',
+  CONNECT: 'CONNECT',
+  TRACE: 'TRACE',
   ANY: 'ANY',
   WEB_SOCKET: 'WEB_SOCKET'
 })
 
 const { parse, stringify } = JSON
-const fastStringify = fastJson({})
 
 const get = (pattern, handler) => ({ type: HTTP.GET, pattern, handler })
 const post = (pattern, handler) => ({ type: HTTP.POST, pattern, handler })
 const put = (pattern, handler) => ({ type: HTTP.PUT, pattern, handler })
 const del = (pattern, handler) => ({ type: HTTP.DEL, pattern, handler })
+const options = (pattern, handler) => ({ type: HTTP.OPTIONS, pattern, handler })
+const patch = (pattern, handler) => ({ type: HTTP.PATCH, pattern, handler })
+const head = (pattern, handler) => ({ type: HTTP.HEAD, pattern, handler })
+const connect = (pattern, handler) => ({ type: HTTP.CONNECT, pattern, handler })
+const trace = (pattern, handler) => ({ type: HTTP.TRACE, pattern, handler })
 const any = (pattern, handler) => ({ type: HTTP.ANY, pattern, handler })
 const ws = (pattern, options, handlers) => ({
   type: HTTP.WEB_SOCKET,
@@ -53,7 +62,15 @@ const ramdaless = ({
         app.get(route.pattern, route.handler)
       }
       if (equals(route.type, HTTP.POST)) {
-        app.post(route.pattern, route.handler)
+        app.post(route.pattern, (res, req) =>
+          route.handler(
+            {
+              ...res,
+              end: body => res.end(stringify(body))
+            },
+            req
+          )
+        )
       }
       if (equals(route.type, HTTP.PUT)) {
         app.put(route.pattern, route.handler)
@@ -80,10 +97,15 @@ module.exports = {
   put,
   del,
   post,
+  options,
+  patch,
+  head,
+  connect,
+  trace,
   any,
   ws,
   parse,
   stringify,
-  fastStringify,
+  // fastStringify,
   ...rest
 }

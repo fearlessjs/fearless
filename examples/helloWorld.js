@@ -24,15 +24,16 @@ const routes = [
   post('/hello-world', (res, req) => {
     // res.send('HELLO WORLD')
 
-    res.end(
-      fastStringify({
-        firstName: 'Rodrigo',
-        mediumName: 'Oler Batista',
-        lastName: 'Silva',
-        age: 25,
-        gender: 'male'
-      })
-    )
+    console.log(res.statusCode)
+
+    res.statusCode = '500'
+    res.end({
+      firstName: 'Rodrigo',
+      mediumName: 'Oler Batista',
+      lastName: 'Silva',
+      age: 25,
+      gender: 'male'
+    })
 
     // res.end(
     //   stringify({

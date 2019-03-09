@@ -9,8 +9,8 @@ const getPeople = get('/people', (res, req) => {
 })
 
 const postPeople = post('/people', (res, req) => {
-  const name = req.getParameters[0]
-  people = [...people, name]
+  console.log('HUDASUHDASUHDHU', JSON.stringify(res.body))
+  people = [...people, 'MARIA MARIA']
   res.end(people)
 })
 

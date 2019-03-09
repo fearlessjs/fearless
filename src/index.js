@@ -5,6 +5,8 @@ const { equals, map, type, includes, ...rest } = require('ramda')
 const stringify = require('fast-json-stringify')
 const simdjson = require('simdjson')
 
+const { getBody } = require('./json')
+
 const HTTP = Object.freeze({
   GET: 'GET',
   POST: 'POST',
@@ -79,6 +81,7 @@ const ramdaless = ({ ssl, routes, listen }) => {
           route.handler(
             {
               ...res,
+              body: getBody(res),
               end: body =>
                 res.end(
                   includes(type(body), ['Object', 'Array'])

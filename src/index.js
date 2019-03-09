@@ -2,7 +2,8 @@
 
 const uWebSockets = require('uWebSockets.js')
 const { equals, map, ...rest } = require('ramda')
-const fastJson = require('fast-json-stringify')
+const stringify = require('fast-json-stringify')
+const simdjson = require('simdjson')
 // const ssl = require('./ssl')
 // const options = require('./options')
 
@@ -20,7 +21,8 @@ const HTTP = Object.freeze({
   WEB_SOCKET: 'WEB_SOCKET'
 })
 
-const { parse, stringify } = JSON
+const parseJSON = simdjson.parse
+const isValidJSON = simdjson.isValid
 
 const get = (pattern, handler) => ({ type: HTTP.GET, pattern, handler })
 const post = (pattern, handler) => ({ type: HTTP.POST, pattern, handler })
@@ -66,7 +68,7 @@ const ramdaless = ({
           route.handler(
             {
               ...res,
-              end: body => res.end(stringify(body))
+              end: body => res.end(JSON.stringify(body))
             },
             req
           )
@@ -104,8 +106,8 @@ module.exports = {
   trace,
   any,
   ws,
-  parse,
+  parseJSON,
+  isValidJSON,
   stringify,
-  // fastStringify,
   ...rest
 }

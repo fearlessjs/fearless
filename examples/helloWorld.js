@@ -1,6 +1,12 @@
 'use strict'
 
-const { ramdaless, get, post } = require('../src/index')
+const {
+  ramdaless,
+  get,
+  post,
+  stringify,
+  fastStringify
+} = require('../src/index')
 
 const handler = token => {
   if (token) {
@@ -17,8 +23,9 @@ const routes = [
   }),
   post('/hello-world', (res, req) => {
     // res.send('HELLO WORLD')
+
     res.end(
-      JSON.stringify({
+      fastStringify({
         firstName: 'Rodrigo',
         mediumName: 'Oler Batista',
         lastName: 'Silva',
@@ -26,6 +33,16 @@ const routes = [
         gender: 'male'
       })
     )
+
+    // res.end(
+    //   stringify({
+    //     firstName: 'Rodrigo',
+    //     mediumName: 'Oler Batista',
+    //     lastName: 'Silva',
+    //     age: 25,
+    //     gender: 'male'
+    //   })
+    // )
   })
 ]
 

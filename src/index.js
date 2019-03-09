@@ -1,7 +1,7 @@
 'use strict'
 
 const uWebSockets = require('uWebSockets.js')
-const { equals, map, type, ...rest } = require('ramda')
+const { equals, map, type, includes, ...rest } = require('ramda')
 const stringify = require('fast-json-stringify')
 const simdjson = require('simdjson')
 
@@ -59,7 +59,20 @@ const ramdaless = ({ ssl, routes, listen }) => {
         })
       }
       if (equals(route.type, HTTP.GET)) {
-        app.get(route.pattern, route.handler)
+        app.get(route.pattern, (res, req) =>
+          route.handler(
+            {
+              ...res,
+              end: body =>
+                res.end(
+                  includes(type(body), ['Object', 'Array'])
+                    ? JSON.stringify(body)
+                    : body
+                )
+            },
+            req
+          )
+        )
       }
       if (equals(route.type, HTTP.POST)) {
         app.post(route.pattern, (res, req) =>
@@ -68,7 +81,9 @@ const ramdaless = ({ ssl, routes, listen }) => {
               ...res,
               end: body =>
                 res.end(
-                  equals(type(body), 'Object') ? JSON.stringify(body) : body
+                  includes(type(body), ['Object', 'Array'])
+                    ? JSON.stringify(body)
+                    : body
                 )
             },
             req

@@ -7,5 +7,7 @@ const helloWorld = get('/hello-world', (res, req) => {
 })
 
 ramdaless({
-  routes: [helloWorld]
+  routes: [helloWorld],
+  ssl: {},
+  listen: {}
 })

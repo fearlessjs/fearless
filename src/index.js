@@ -2,6 +2,7 @@
 
 const uWebSockets = require('uWebSockets.js')
 const { equals, map, ...rest } = require('ramda')
+const fastJson = require('fast-json-stringify')
 // const ssl = require('./ssl')
 // const options = require('./options')
 
@@ -13,6 +14,9 @@ const HTTP = Object.freeze({
   ANY: 'ANY',
   WEB_SOCKET: 'WEB_SOCKET'
 })
+
+const { parse, stringify } = JSON
+const fastStringify = fastJson({})
 
 const get = (pattern, handler) => ({ type: HTTP.GET, pattern, handler })
 const post = (pattern, handler) => ({ type: HTTP.POST, pattern, handler })
@@ -78,5 +82,8 @@ module.exports = {
   post,
   any,
   ws,
+  parse,
+  stringify,
+  fastStringify,
   ...rest
 }

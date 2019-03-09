@@ -3767,11 +3767,6 @@ util-deprecate@~1.0.1:
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
   integrity sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=
 
-uws@^100.0.1:
-  version "100.0.1"
-  resolved "https://registry.yarnpkg.com/uws/-/uws-100.0.1.tgz#39b6c14ed4be8af87037b3e8c8965f55a6743fc3"
-  integrity sha512-iBNNJBr4I6dzgAHV5EqbRU5dU9At0AqJT04rlgI2sHE+tws+AgBJOfuW9BIQ3xAgtz7tSxbZrC6X4gcrnDuAfA==
-
 validate-npm-package-license@^3.0.1:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/validate-npm-package-license/-/validate-npm-package-license-3.0.4.tgz#fc91f6b9c7ba15c857f4cb2c5defeec39d4f410a"

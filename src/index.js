@@ -1,11 +1,9 @@
 'use strict'
 
 const uWebSockets = require('uWebSockets.js')
-const { equals, map, ...rest } = require('ramda')
+const { equals, map, type, ...rest } = require('ramda')
 const stringify = require('fast-json-stringify')
 const simdjson = require('simdjson')
-// const ssl = require('./ssl')
-// const options = require('./options')
 
 const HTTP = Object.freeze({
   GET: 'GET',
@@ -41,17 +39,17 @@ const ws = (pattern, options, handlers) => ({
   handlers
 })
 
-const ramdaless = ({
-  ssl: { key, cert, passphrase },
-  routes,
-  listen: { port, handler }
-}) => {
+const ramdaless = ({ ssl, routes, listen }) => {
   try {
-    const app = uWebSockets.App({
-      // key_file_name: 'misc/key.pem',
-      // cert_file_name: 'misc/cert.pem',
-      // passphrase: '1234'
-    })
+    const app = uWebSockets.App(
+      ssl
+        ? {
+          key_file_name: ssl.key,
+          cert_file_name: ssl.cert,
+          passphrase: ssl.passphrase
+        }
+        : {}
+    )
 
     const createRoute = route => {
       if (equals(route.type, HTTP.WEB_SOCKET)) {
@@ -68,7 +66,10 @@ const ramdaless = ({
           route.handler(
             {
               ...res,
-              end: body => res.end(JSON.stringify(body))
+              end: body =>
+                res.end(
+                  equals(type(body), 'Object') ? JSON.stringify(body) : body
+                )
             },
             req
           )
@@ -86,6 +87,20 @@ const ramdaless = ({
     }
 
     map(createRoute, routes)
+
+    const port = listen && listen.port ? listen.port : 3000
+
+    const listening = token => {
+      if (token) {
+        console.log(`Connection successful, go to http://localhost:${port}`)
+      } else {
+        console.log(
+          `Problems connecting to port ${port}, to solve the problem execute the command below`
+        )
+      }
+    }
+
+    const handler = listen && listen.handler ? listen.handler : listening
 
     app.listen(port, handler)
   } catch (error) {
@@ -109,5 +124,8 @@ module.exports = {
   parseJSON,
   isValidJSON,
   stringify,
-  ...rest
+  ...rest,
+  equals,
+  map,
+  type
 }

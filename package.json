@@ -4,6 +4,7 @@
     "version": "0.1.0",
     "author": "Rodrigo Oler <roodrigoprogrammer@gmail.com>",
     "dependencies": {
+        "fast-json-stringify": "^1.11.3",
         "ramda": "0.26.1",
         "uWebSockets.js": "uNetworking/uWebSockets.js#v15.4.0"
     },

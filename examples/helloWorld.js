@@ -1,23 +1,39 @@
 'use strict'
 
-const { ramdaless, get } = require('../src/index')
-// const ssl = require('./ssl')
-// const options = require('./options')
+const { ramdaless, get, post } = require('../src/index')
 
-get('/sign-in', (res, _req) => {
-  res.end('SIGN-IN!')
-})
+const handler = token => {
+  if (token) {
+    console.log('OK')
+  } else {
+    console.log('ERROR')
+  }
+}
+
+const routes = [
+  get('/hello-world', (res, req) => {
+    // res.send('HELLO WORLD')
+    res.end('HELLO WORLD')
+  }),
+  post('/hello-world', (res, req) => {
+    // res.send('HELLO WORLD')
+    res.end(
+      JSON.stringify({
+        firstName: 'Rodrigo',
+        mediumName: 'Oler Batista',
+        lastName: 'Silva',
+        age: 25,
+        gender: 'male'
+      })
+    )
+  })
+]
 
 ramdaless({
-  // key_file_name: 'misc/key.pem',
-  // cert_file_name: 'misc/cert.pem',
-  // passphrase: '1234'
-}).listen(3000)
-
-//   token => {
-//     if (token) {
-//       console.log('Listening to port ' + 3000)
-//     } else {
-//       console.log('Failed to listen to port ' + 3000)
-//     }
-//   }
+  ssl: {},
+  routes,
+  listen: {
+    port: 3000,
+    handler
+  }
+})

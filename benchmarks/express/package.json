@@ -1,0 +1,12 @@
+{
+  "name": "express",
+  "version": "0.1.0",
+  "description": "Express",
+  "main": "index.js",
+  "author": "Rodrigo Oler",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}

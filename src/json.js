@@ -1,42 +1,11 @@
-const { parseJSON } = require('./index')
+const stringify = require('fast-json-stringify')
+const simdjson = require('simdjson')
 
-const getBody = (res, err) => {
-  let buffer
-  let json
-  /* Register data cb */
-  res.onData((ab, isLast) => {
-    let chunk = Buffer.from(ab)
-    if (isLast) {
-      if (buffer) {
-        try {
-          json = parseJSON(Buffer.concat([buffer, chunk]))
-        } catch (e) {
-          /* res.close calls onAborted */
-          res.close()
-        }
-      } else {
-        try {
-          json = parseJSON(chunk)
-        } catch (e) {
-          /* res.close calls onAborted */
-          res.close()
-        }
-      }
-    } else {
-      if (buffer) {
-        buffer = Buffer.concat([buffer, chunk])
-      } else {
-        buffer = Buffer.concat([chunk])
-      }
-    }
-  })
+const parseJSON = simdjson.parse
+const isValidJSON = simdjson.isValid
 
-  /* Register error cb */
-  res.onAborted(err)
-
-  console.log('HUDASUHDASHUD', json)
-
-  return json
+module.exports = {
+  parseJSON,
+  isValidJSON,
+  stringify
 }
-
-module.exports.getBody = getBody

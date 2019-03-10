@@ -8,21 +8,14 @@ const getPeople = get('/people', (res, req) => {
   res.end(people)
 })
 
-const postPeople = post('/people', (res, req) => {
-  console.log('HUDASUHDASUHDHU', JSON.stringify(res.body))
-  people = [...people, 'MARIA MARIA']
-  res.end(people)
+const postPeople = post('/people', (req, res) => {
+  /* Note that you cannot read from req after returning from here */
+  let body = res.body
+
+  console.log('HUDASUHDAUHSD', body)
+
+  res.end(200, 'HELLO WORLD POST')
 })
-
-// const putPeople = put('/people/:name', (res, req) => {
-//   people =
-
-//   res.end('HELLO WORLD')
-// })
-
-// const delPeople = del('/hello-world', (res, req) => {
-//   res.end('HELLO WORLD')
-// })
 
 ramdaless({
   routes: [getPeople, postPeople],

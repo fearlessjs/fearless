@@ -73,6 +73,7 @@
     "bench:hapi:1": "wrk -t12 -c400 -d60s http://0.0.0.0:3000 > ./benchmarks/results/hapi.md",
     "bench:koa2:1": "wrk -t12 -c400 -d60s http://0.0.0.0:3000 > ./benchmarks/results/koa2.md",
     "bench:micro:1": "wrk -t12 -c400 -d60s http://0.0.0.0:3000 > ./benchmarks/results/micro.md",
+    "bench:ramdaless:1": "wrk -t12 -c400 -d60s http://0.0.0.0:3000 > ./benchmarks/results/ramdaless.md",
     "build": "babel src -d dist",
     "clean": "rm -rf dist",
     "standard": "standard --fix",
@@ -80,6 +81,7 @@
     "start:fastify": "node ./benchmarks/express",
     "start:hapi": "node ./benchmarks/express",
     "start:koa2": "node ./benchmarks/express",
-    "start:micro": "node ./benchmarks/express"
+    "start:micro": "node ./benchmarks/express",
+    "start:ramdaless": "node ./benchmarks/ramdaless"
   }
 }

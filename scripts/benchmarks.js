@@ -1,12 +1,22 @@
+const { forEach } = require('ramda')
 const { exec } = require('child_process')
 
-exec('cat *.js bad_file | wc -l', (err, stdout, stderr) => {
-  if (err) {
-    // node couldn't execute the command
-    return
-  }
+const frameworks = ['EXPRESS', 'HAPI', 'MICRO', 'FASTIFY', 'RAMDALESS', 'KOA2']
 
-  // the *entire* stdout and stderr (buffered)
-  console.log(`stdout: ${stdout}`)
-  console.log(`stderr: ${stderr}`)
-})
+const closePort = () => exec('lsof -ti:3000 | xargs kill')
+
+const runBenchmark = framework => {
+  const name = framework.toLowerCase()
+
+  closePort()
+  exec(`node ../benchmarks/${name}`)
+  exec(
+    `wrk -t12 -c400 -d60s http://0.0.0.0:3000 > ./benchmarks/results/${name}.md`
+  )
+}
+
+const main = () => {
+  forEach(runBenchmark, frameworks)
+}
+
+main()

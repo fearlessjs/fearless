@@ -5,4 +5,4 @@ uws
   .get('/', (res, req) => {
     res.end('Hello, World!')
   })
-  .listen(3000)
+  .listen(3000, () => {})

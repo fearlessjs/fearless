@@ -1,17 +1,6 @@
-module.exports = configs => {
-  const cors = {
+module.exports = (configs = {}) => handlers => ({
+  configs: {
     origin: ['*']
-  }
-
-  if (Array.isArray(configs)) {
-    return {
-      handlers: configs,
-      cors
-    }
-  }
-
-  return {
-    ...configs,
-    cors
-  }
-}
+  },
+  handlers
+})

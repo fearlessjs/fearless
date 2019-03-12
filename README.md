@@ -1,4 +1,4 @@
-# ramdaless
+# Fearless
 
 ### Next eneration functional programming framework for NodeJS
 
@@ -6,12 +6,12 @@
 
 #### yarn
 ```sh
-yarn add ramdaless
+yarn add @fearless/fearless
 ```
 
 #### npm
 ```sh
-npm install ramdaless
+npm install @fearless/fearless
 ```
 
 

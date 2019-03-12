@@ -25,7 +25,7 @@ module.exports = (
     allowMethods: DEFAULT_ALLOW_METHODS,
     allowHeaders: DEFAULT_ALLOW_HEADERS,
     allowCredentials: true,
-    exposeHeaders: []
+    exposeHeaders: ['']
   }
 ) => handlers =>
   Array.isArray(handlers)

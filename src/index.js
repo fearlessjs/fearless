@@ -42,7 +42,7 @@ const {
   ws
 } = require('./http')
 
-const ramdaless = ({ cors, ssl, handlers, listen }) => {
+const fearless = ({ cors, ssl, handlers, listen }) => {
   console.log(JSON.stringify({ cors, ssl, handlers }, null, 4))
 
   try {
@@ -111,7 +111,7 @@ const ramdaless = ({ cors, ssl, handlers, listen }) => {
 }
 
 module.exports = {
-  ramdaless,
+  fearless,
   get,
   put,
   del,

@@ -1,4 +1,4 @@
-const { ramdaless, get, pipe, post } = require('../src/index')
+const { ramdaless, get, pipe } = require('../src/index')
 const cors = require('../cors')()
 const ssl = require('../ssl')()
 
@@ -8,9 +8,6 @@ pipe(
   ramdaless
 )([
   get('/*', (res, req) => {
-    res.end('HELLO WORLD')
-  }),
-  post('/*', (res, req) => {
-    res.end('HELLO WORLD')
+    res.end('Hello, World!')
   })
 ])

@@ -1,9 +1,0 @@
-{
-  "name": "ramdaless-cors",
-  "version": "0.1.0",
-  "description": "CORS",
-  "main": "index.js",
-  "author": "Rodrigo Oler",
-  "license": "MIT",
-  "private": false
-}

@@ -6,7 +6,7 @@ const { equals, map, type, includes, ...rest } = require('ramda')
 const { stringify, parseJSON, isValidJSON } = require('./json')
 
 const isObjectOrArray = body => includes(type(body), ['Object', 'Array'])
-
+const isArray = param => equals(type(param), 'Array')
 // const getRequest = (req, body) => ({
 //   body,
 //   query: []
@@ -42,7 +42,12 @@ const {
   ws
 } = require('./http')
 
-const fearless = ({ cors, ssl, handlers, listen }) => {
+const fearless = (options = {}) => {
+  console.log(equals(type(options), 'Array'), options)
+  const { cors, ssl, handlers, listen } = isArray(options)
+    ? { handlers: options, ssl: null, cors: null, listen: null }
+    : options
+
   console.log(JSON.stringify({ cors, ssl, handlers }, null, 4))
 
   try {

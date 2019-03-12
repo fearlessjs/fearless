@@ -1,6 +1,6 @@
 const { ramdaless, get, pipe, post } = require('../src/index')
-const cors = require('ramdaless-cors')
-const ssl = require('ramdaless-ssl')
+const cors = require('../cors')
+const ssl = require('../ssl')
 
 pipe(
   cors,

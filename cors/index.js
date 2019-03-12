@@ -3,7 +3,7 @@ module.exports = configs => {
     origin: ['*']
   }
 
-  if (typeof configs === 'Array') {
+  if (Array.isArray(configs)) {
     return {
       handlers: configs,
       cors

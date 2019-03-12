@@ -5,7 +5,7 @@ module.exports = configs => {
     passphrase: 'test3'
   }
 
-  if (typeof configs === 'Array') {
+  if (Array.isArray(configs)) {
     return {
       handlers: configs,
       ssl

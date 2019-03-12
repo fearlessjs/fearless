@@ -1,9 +1,32 @@
-const { ramdaless, get } = require('../src/index')
+const { ramdaless, get, pipe } = require('../src/index')
 
-const helloWorld = get('/*', (res, req) => {
-  res.end('HELLO WORLD')
+const handlers = () => ({
+  handlers: [
+    get('/*', (res, req) => {
+      res.end('HELLO WORLD')
+    })
+  ]
 })
 
-ramdaless({
-  routes: [helloWorld]
+const cors = ({ ...rest }) => ({
+  ...rest,
+  cors: {
+    origin: '*'
+  }
 })
+
+const ssl = ({ ...rest }) => ({
+  ...rest,
+  ssl: {
+    key: 'test',
+    cert: 'test2',
+    passphrase: 'test3'
+  }
+})
+
+pipe(
+  handlers,
+  cors,
+  ssl,
+  ramdaless
+)()

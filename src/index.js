@@ -42,7 +42,9 @@ const {
   ws
 } = require('./http')
 
-const ramdaless = ({ ssl, routes, listen }) => {
+const ramdaless = ({ handlers, ssl, cors, listen }) => {
+  console.log('UHDSAHUDASUHDUAS', handlers, ssl, cors)
+
   try {
     const app = uWebSockets.App(
       ssl
@@ -53,7 +55,6 @@ const ramdaless = ({ ssl, routes, listen }) => {
         }
         : {}
     )
-
     map(({ pattern, type, handler, options, handlers }) => {
       if (equals(type, HTTP.WEB_SOCKET)) {
         app.ws(pattern, {
@@ -70,7 +71,6 @@ const ramdaless = ({ ssl, routes, listen }) => {
       //       bodyParser(res, json => {
       //         console.log('JSON', json)
       //         body = json
-
       //         const newRes = {
       //           body,
       //           end: (statusCode, body) => {
@@ -78,7 +78,6 @@ const ramdaless = ({ ssl, routes, listen }) => {
       //             res.end(body)
       //           }
       //         }
-
       //         handler(req, newRes)
       //       })
       //     })
@@ -92,10 +91,8 @@ const ramdaless = ({ ssl, routes, listen }) => {
       if (equals(type, HTTP.ANY)) {
         app.any(pattern, handler)
       }
-    }, routes)
-
+    }, handlers)
     const port = listen && listen.port ? listen.port : 3000
-
     const listening = token => {
       if (token) {
         console.log(`Connection successful, go to http://localhost:${port}`)
@@ -105,9 +102,7 @@ const ramdaless = ({ ssl, routes, listen }) => {
         )
       }
     }
-
     const handler = listen && listen.handler ? listen.handler : listening
-
     app.listen(port, handler)
   } catch (error) {
     console.error(error)

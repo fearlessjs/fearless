@@ -1,0 +1,10 @@
+{
+    "name": "ramdaless-ssl",
+    "version": "0.1.0",
+    "description": "SSL",
+    "main": "index.js",
+    "author": "Rodrigo Oler",
+    "license": "MIT",
+    "private": false
+  }
+  

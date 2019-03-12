@@ -1,24 +1,6 @@
-const { ramdaless, get, pipe, post, type, equals } = require('../src/index')
-
-const ssl = configs => {
-  const ssl = {
-    key: 'test',
-    cert: 'test2',
-    passphrase: 'test3'
-  }
-
-  if (equals(type(configs), 'Array')) {
-    return {
-      handlers: configs,
-      ssl
-    }
-  }
-
-  return {
-    ...configs,
-    ssl
-  }
-}
+const { ramdaless, get, pipe, post } = require('../src/index')
+const cors = require('ramdaless-cors')
+const ssl = require('ramdaless-ssl')
 
 pipe(
   cors,

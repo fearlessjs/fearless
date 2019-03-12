@@ -42,8 +42,8 @@ const {
   ws
 } = require('./http')
 
-const ramdaless = (configs, port) => {
-  console.log('UHDSAHUDASUHDUAS', configs)
+const ramdaless = ({ cors, ssl, handlers }) => {
+  console.log(JSON.stringify({ cors, ssl, handlers }, null, 4))
 
   // try {
   //   const app = uWebSockets.App(

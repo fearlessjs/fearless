@@ -27,9 +27,10 @@ module.exports = (
     allowCredentials: true,
     exposeHeaders: []
   }
-) => handlers => ({
-  cors: {
-    origin: ['*']
-  },
-  handlers
-})
+) => handlers =>
+  Array.isArray(handlers)
+    ? {
+      cors: options,
+      handlers
+    }
+    : { cors: options, ...handlers }

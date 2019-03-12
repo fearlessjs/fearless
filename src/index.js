@@ -2,30 +2,8 @@
 
 const uWS = require('uWebSockets.js')
 const { equals, map, type, includes, ...rest } = require('ramda')
-
 const { stringify, parseJSON, isValidJSON } = require('./json')
-
-const isObjectOrArray = body => includes(type(body), ['Object', 'Array'])
-const isArray = param => equals(type(param), 'Array')
-// const getRequest = (req, body) => ({
-//   body,
-//   query: []
-// })
-
-// const getResponse = res => ({
-//   end: (statusCode, body) => {
-//     res.writeStatus(statusCode.toString() || '200')
-//     res.end(body)
-//   }
-// })
-
-const basicHandler = (res, req, handler) =>
-  handler(
-    {
-      end: body => res.end(isObjectOrArray(body) ? JSON.stringify(body) : body)
-    },
-    req
-  )
+const { isArray, basicHandler } = require('./utils')
 
 const {
   HTTP,

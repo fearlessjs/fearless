@@ -1,3 +1,6 @@
+const { equals } = require('ramda')
+const { basicHandler } = require('./utils')
+
 const HTTP = Object.freeze({
   GET: 'GET',
   POST: 'POST',
@@ -29,6 +32,44 @@ const ws = (pattern, options, handlers) => ({
   handlers
 })
 
+const setHandler = (app, { pattern, type, handler, options, handlers }) => {
+  if (equals(type, HTTP.WEB_SOCKET)) {
+    app.ws(pattern, {
+      ...options,
+      ...handlers
+    })
+  }
+  if (equals(type, HTTP.GET)) {
+    app.get(pattern, (res, req) => basicHandler(res, req, handler))
+  }
+  //   if (equals(type, HTTP.POST)) {
+  //     app.post(pattern, (res, req) => {
+  //       let body
+  //       bodyParser(res, json => {
+  //         console.log('JSON', json)
+  //         body = json
+  //         const newRes = {
+  //           body,
+  //           end: (statusCode, body) => {
+  //             res.writeStatus(statusCode.toString() || '200')
+  //             res.end(body)
+  //           }
+  //         }
+  //         handler(req, newRes)
+  //       })
+  //     })
+  //   }
+  if (equals(type, HTTP.PUT)) {
+    app.put(pattern, handler)
+  }
+  if (equals(type, HTTP.DEL)) {
+    app.del(pattern, handler)
+  }
+  if (equals(type, HTTP.ANY)) {
+    app.any(pattern, handler)
+  }
+}
+
 module.exports = {
   HTTP,
   get,
@@ -41,5 +82,6 @@ module.exports = {
   connect,
   trace,
   any,
-  ws
+  ws,
+  setHandler
 }

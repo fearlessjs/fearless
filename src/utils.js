@@ -23,10 +23,49 @@ const getResponse = res => ({
   }
 })
 
+const getSSLDefault = ({
+  keyFileName,
+  certFileName,
+  passphrase,
+  dhParamsFileName
+}) => ({
+  key_file_name: keyFileName,
+  cert_file_name: certFileName,
+  passphrase,
+  dh_params_file_name: dhParamsFileName
+})
+
+const getListenDefault = () => {
+  const port = listen && listen.port ? listen.port : 3000
+  const listening = token => {
+    if (token) {
+      console.log(`Connection successful, go to http://localhost:${port}`)
+    } else {
+      console.log(
+        `Problems connecting to port ${port}, to solve the problem execute the command below`
+      )
+    }
+  }
+  const handler = listen && listen.handler ? listen.handler : listening
+  app.listen(port, handler)
+}
+
+const getOptions = options =>
+  isArray(options)
+    ? {
+      handlers: options,
+      ssl: null,
+      cors: null,
+      listen: null
+    }
+    : options
+
 module.exports = {
   isObjectOrArray,
   isArray,
   basicHandler,
   getRequest,
-  getResponse
+  getResponse,
+  getSSLDefault,
+  getOptions
 }

@@ -32,7 +32,7 @@ const ws = (pattern, options, handlers) => ({
   handlers
 })
 
-const setHandler = (app, { pattern, type, handler, options, handlers }) => {
+const setHandler = app => ({ pattern, type, handler, options, handlers }) => {
   if (equals(type, HTTP.WEB_SOCKET)) {
     app.ws(pattern, {
       ...options,

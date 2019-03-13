@@ -7,30 +7,15 @@ const { getSSLDefault, getListenDefault, getOptions } = require('./utils')
 
 const http = require('./http')
 
-const fearless = (
-  options = {
-    cors: [],
-    ssl: {
-      keyFileName: '',
-      certFileName: '',
-      passphrase: '',
-      dhParamsFileName: ''
-    },
-    handlers: [],
-    listen: {
-      port: '',
-      handler: ''
-    }
-  }
-) => {
+const fearless = (options) => {
   const { cors, ssl, handlers, listen } = getOptions(options)
 
   console.log(JSON.stringify({ cors, ssl, handlers }, null, 4))
 
   try {
     const app = uWS.App(getSSLDefault(ssl))
-    map(http.setHandler, handlers)
-    app.listen(getListenDefault(listen))
+    map(http.setHandler(app), handlers)
+    app.listen(listen.port, getListenDefault(listen))
   } catch (error) {
     console.error(error)
   }

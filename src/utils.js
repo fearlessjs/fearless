@@ -28,7 +28,9 @@ const getSSLDefault = ssl =>
 
 const getListenDefault = ({ handler, port = 3000 }) => token => {
   if (token) {
-    handler ? handler() : console.log('sucess')
+    if (handler) {
+      handler()
+    }
   } else {
     console.log(
       `Problems connecting to port ${port}, to solve the problem execute the command below`

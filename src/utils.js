@@ -7,10 +7,10 @@ const getResponse = res => ({
   send: (...params) => {
     if (params.length > 1) {
       res.writeStatus(params[0].toString())
-      res.end(isObjectOrArray ? JSON.stringify(params[1]) : params[1])
+      res.end(JSON.stringify(params[1]))
       return
     }
-    res.end(isObjectOrArray ? JSON.stringify(params[0]) : params[0])
+    res.end(JSON.stringify(params[0]))
   }
 })
 

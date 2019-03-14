@@ -1,5 +1,5 @@
 const { equals } = require('ramda')
-const { basicHandler } = require('./utils')
+const { getResponse } = require('./utils')
 
 const HTTP = Object.freeze({
   GET: 'GET',
@@ -40,7 +40,7 @@ const setHandler = app => ({ pattern, type, handler, options, handlers }) => {
     })
   }
   if (equals(type, HTTP.GET)) {
-    app.get(pattern, (res, req) => basicHandler(res, req, handler))
+    app.get(pattern, (res, req) => handler(req, getResponse(res)))
   }
   //   if (equals(type, HTTP.POST)) {
   //     app.post(pattern, (res, req) => {

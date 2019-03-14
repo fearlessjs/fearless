@@ -1,13 +1,12 @@
 {
   "name": "@fearless/fearless",
   "description": "Fearless MicroFramework Node",
-  "version": "0.1.0-beta.0",
+  "version": "0.1.0-beta.1",
   "author": "Rodrigo Oler <https://github.com/rodrigooler>",
   "bugs": {
     "url": "https://github.com/fearlessjs/fearless/issues"
   },
   "dependencies": {
-    "axios": "^0.18.0",
     "uWebSockets.js": "github:uNetworking/uWebSockets.js#v15.8.0"
   },
   "devDependencies": {

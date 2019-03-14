@@ -20,6 +20,7 @@
   "main": "src/index.js",
   "repository": "git@github.com:rodrigooler/fearless.git",
   "scripts": {
+    "lines": "npx cloc src/",
     "standard": "standard --fix"
   }
 }

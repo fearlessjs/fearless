@@ -14,3 +14,4 @@ CONTRIBUTING.md
 # FOLDERS
 coverage/
 tools/
+node_modules/

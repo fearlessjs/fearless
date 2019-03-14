@@ -1,7 +1,5 @@
-const { equals, type, includes } = require('ramda')
-
-const isObjectOrArray = body => includes(type(body), ['Object', 'Array'])
-const isArray = param => equals(type(param), 'Array')
+const isObjectOrArray = body => ['Object', 'Array'].includes(typeof body)
+const isArray = param => Array.isArray(param)
 
 const getResponse = res => ({
   send: (...params) => {

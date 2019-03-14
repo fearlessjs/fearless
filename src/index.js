@@ -5,8 +5,22 @@ const { getSSLDefault, getListenDefault, getOptions } = require('./utils')
 
 const http = require('./http')
 
+/**
+ *
+ * @param {Object} options
+ * @param {Array<Function>} options.handlers
+ * @param {Object} options.listen
+ * @param {number=} options.listen.port
+ * @param {Function=} options.listen.handler
+ * @param {Object} options.ssl
+ * @param {string=} options.ssl.keyFileName
+ * @param {string=} options.ssl.certFileName
+ * @param {string=} options.ssl.passphrase
+ * @param {string=} options.ssl.dhParamsFileName
+ * @param {Array<Function>=} options.middlewares
+ */
 const fearless = options => {
-  const { cors, ssl, handlers, listen } = getOptions(options)
+  const { ssl, handlers, listen } = getOptions(options)
 
   const app = uWS.App(getSSLDefault(ssl))
   handlers.forEach(handler => http.setHandler(app, handler))

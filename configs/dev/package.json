@@ -1,0 +1,67 @@
+{
+    "name": "@fearless/fearless",
+    "description": "Fearless MicroFramework Node",
+    "version": "0.1.0-beta.0",
+    "author": "Rodrigo Oler <https://github.com/rodrigooler>",
+    "babel": {
+      "presets": [
+        "@babel/env",
+        "minify"
+      ],
+      "comments": true
+    },
+    "dependencies": {
+      "uWebSockets.js": "uNetworking/uWebSockets.js#v15.5.0"
+    },
+    "devDependencies": {
+      "@babel/cli": "7.2.3",
+      "@babel/core": "7.3.4",
+      "@babel/node": "7.2.2",
+      "@babel/preset-env": "7.3.4",
+      "babel-preset-minify": "0.5.0",
+      "eslint": "5.15.1",
+      "eslint-config-standard": "12.0.0",
+      "eslint-plugin-import": "2.16.0",
+      "eslint-plugin-node": "8.0.1",
+      "eslint-plugin-promise": "4.0.1",
+      "eslint-plugin-standard": "4.0.0",
+      "husky": "1.3.1",
+      "lint-staged": "8.1.5"
+    },
+    "eslintConfig": {
+      "env": {
+        "browser": true,
+        "commonjs": true,
+        "es6": true
+      },
+      "extends": "standard",
+      "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+      },
+      "parserOptions": {
+        "ecmaVersion": 2018
+      },
+      "rules": {}
+    },
+    "husky": {
+      "hooks": {
+        "pre-commit": "lint-staged"
+      }
+    },
+    "license": "MIT",
+    "lint-staged": {
+      "*.js": [
+        "yarn standard",
+        "git add"
+      ]
+    },
+    "main": "dist/index.js",
+    "repository": "git@github.com:rodrigooler/fearless.git",
+    "scripts": {
+      "build": "babel src -d dist",
+      "clean": "rm -rf dist",
+      "standard": "standard --fix"
+    }
+  }
+  

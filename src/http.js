@@ -1,4 +1,5 @@
 const { getResponse } = require('./utils')
+const { HTTP } = require('./constants')
 
 const get = (pattern, handler) => ({ type: HTTP.GET, pattern, handler })
 const post = (pattern, handler) => ({ type: HTTP.POST, pattern, handler })

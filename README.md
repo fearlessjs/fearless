@@ -1,6 +1,6 @@
 # Fearless
 
-### Next eneration functional programming framework for NodeJS
+⚡️microframework focused on productivity and performance so that developers can work less is to produce more without having risks in compromising performance
 
 ## Install
 
@@ -14,12 +14,14 @@ yarn add @fearless/fearless
 npm install @fearless/fearless
 ```
 
+## Simple example
 
-## Lines 
-- [x] body || 30 lines
-- [x] index || 78 lines
-- [x] json || 12 lines
-- [x] routes || 65 lines
-- [x] verbs || 46 lines
+```js
+const { fearless, get } = require('@fearless/fearless')
 
-total lines = 231 lines
+const index = get('/', (req, res) => res.send('ping =D!'))
+const ping = get('/ping', (req, res) => res.send('ping =D!'))
+const helloWorld = get('/hello-world', (req, res) => res.send('Hello, World!'))
+
+fearless([index, ping, helloWorld])
+```

@@ -49,12 +49,12 @@ const getOptions = options => ({
 const getMethods = method =>
   method === HTTP.WEB_SOCKET
     ? (pattern, options, handlers) => ({
-      method: HTTP.WEB_SOCKET,
+      method,
       pattern,
       options,
       handlers
     })
-    : (pattern, handler) => ({ method: HTTP[method], pattern, handler })
+    : (pattern, handler) => ({ method, pattern, handler })
 
 module.exports = {
   isObjectOrArray,

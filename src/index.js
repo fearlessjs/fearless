@@ -9,7 +9,7 @@ const fearless = options => {
   const { cors, ssl, handlers, listen } = getOptions(options)
 
   const app = uWS.App(getSSLDefault(ssl))
-  handlers.forEach(http.setHandler(app))
+  handlers.forEach(handler => http.setHandler(app, handler))
   app.listen(listen.port, getListenDefault(listen))
 }
 

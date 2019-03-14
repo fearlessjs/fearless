@@ -4,7 +4,9 @@ fearless([
   get('/test', (res, req) => {
     res.end('TESTE!')
   }),
-  get('/*', (res, req) => {
-    res.end('Hello, World!')
+  get('/', (res, req) => {
+    const query = req.getQuery()
+
+    res.end(JSON.stringify(query))
   })
 ])

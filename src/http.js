@@ -1,19 +1,5 @@
 const { getResponse } = require('./utils')
 
-const HTTP = Object.freeze({
-  GET: 'GET',
-  POST: 'POST',
-  PUT: 'PUT',
-  DEL: 'DEL',
-  OPTIONS: 'OPTIONS',
-  PATCH: 'PATCH',
-  HEAD: 'HEAD',
-  CONNECT: 'CONNECT',
-  TRACE: 'TRACE',
-  ANY: 'ANY',
-  WEB_SOCKET: 'WEB_SOCKET'
-})
-
 const get = (pattern, handler) => ({ type: HTTP.GET, pattern, handler })
 const post = (pattern, handler) => ({ type: HTTP.POST, pattern, handler })
 const put = (pattern, handler) => ({ type: HTTP.PUT, pattern, handler })

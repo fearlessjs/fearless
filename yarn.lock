@@ -2297,9 +2297,9 @@ type-check@~0.3.2:
   dependencies:
     prelude-ls "~1.1.2"
 
-"uWebSockets.js@github:uNetworking/uWebSockets.js#v15.5.0":
-  version "15.5.0"
-  resolved "https://codeload.github.com/uNetworking/uWebSockets.js/tar.gz/7f7d9e6a90cc81c9ad89d1af822ecf6860d80699"
+"uWebSockets.js@github:uNetworking/uWebSockets.js#v15.8.0":
+  version "15.8.0"
+  resolved "https://codeload.github.com/uNetworking/uWebSockets.js/tar.gz/d96159d2ffc1517cdab39fe169d88dd55a2aeba7"
 
 union-value@^1.0.0:
   version "1.0.0"

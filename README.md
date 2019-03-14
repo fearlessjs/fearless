@@ -1,6 +1,18 @@
-# Fearless
+# Fearless (BETA) - Not yet recommended for production
 
 ⚡️microframework focused on productivity and performance so that developers can work less is to produce more without having risks in compromising performance
+
+
+## 🎩 &nbsp; Features
+
+- 🧘 **Zero config and easy.** Made to start and use.
+- ⚡️ **Blazing Fast.** Support uWS(C++) where you have more performance.
+- 🎛 **Pluggable.** With middlewares
+- 🔐 **Typescript Support.** We have a full support for your type definitions.
+
+## 🗃 &nbsp; Examples
+
+- **[helloWorld](https://github.com/fearlessjs/examples/tree/master/examples/helloWorld/index.js)** - Some helloWorld example
 
 ## Install
 

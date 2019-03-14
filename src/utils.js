@@ -7,17 +7,6 @@ const isArray = param => Array.isArray(param)
 const isAsyncFunction = f =>
   f.constructor.toString() === 'function AsyncFunction() { [native code] }'
 
-const getResponse = res => ({
-  send: (...params) => {
-    if (params.length > 1) {
-      res.writeStatus(params[0].toString())
-      res.end(JSON.stringify(params[1]))
-      return
-    }
-    res.end(JSON.stringify(params[0]))
-  }
-})
-
 const getSSLDefault = ssl =>
   ssl
     ? {
@@ -64,7 +53,6 @@ module.exports = {
   isObjectOrArray,
   isArray,
   isAsyncFunction,
-  getResponse,
   getSSLDefault,
   getOptions,
   getListenDefault,

@@ -1,11 +1,6 @@
 'use strict'
 
-const {
-  getResponse,
-  getMethods,
-  isAsyncFunction,
-  transformEndInReturn
-} = require('./utils')
+const { getMethods } = require('./utils')
 const { HTTP } = require('./constants')
 
 const [
@@ -33,7 +28,7 @@ const setHandler = (
     })
   }
 
-  app[method](pattern, (res, req) => handler(req, getResponse(res)))
+  app[method](pattern, (res, req) => handler(req, res))
 }
 
 module.exports = {

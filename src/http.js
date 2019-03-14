@@ -17,13 +17,19 @@ const [
   ws
 ] = Object.values(HTTP).map(getMethods)
 
-const setHandler = (app, { pattern, method, handler, options, handlers }) =>
-  method === HTTP.WEB_SOCKET
-    ? app[method](pattern, {
+const setHandler = (
+  app,
+  { pattern, method, handler, options, handlers, middlewares }
+) => {
+  if (method === HTTP.WEB_SOCKET) {
+    app[method](pattern, {
       ...options,
       ...handlers
     })
-    : app[method](pattern, (res, req) => handler(req, getResponse(res)))
+  }
+
+  app[method](pattern, (res, req) => handler(req, getResponse(res)))
+}
 
 module.exports = {
   HTTP,

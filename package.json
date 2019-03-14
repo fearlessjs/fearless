@@ -12,7 +12,6 @@
   },
   "dependencies": {
     "fast-json-stringify": "1.11.3",
-    "querystringify": "^2.1.0",
     "ramda": "0.26.1",
     "simdjson": "0.0.3",
     "uWebSockets.js": "uNetworking/uWebSockets.js#v15.5.0"

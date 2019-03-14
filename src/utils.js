@@ -4,9 +4,13 @@ const isObjectOrArray = body => includes(type(body), ['Object', 'Array'])
 const isArray = param => equals(type(param), 'Array')
 
 const getResponse = res => ({
-  send: (statusCode, body) => {
-    res.writeStatus(statusCode.toString() || '200')
-    res.end(body)
+  send: (...params) => {
+    if (params.length > 1) {
+      res.writeStatus(params[0].toString())
+      res.end(isObjectOrArray ? JSON.stringify(params[1]) : params[1])
+      return
+    }
+    res.end(isObjectOrArray ? JSON.stringify(params[0]) : params[0])
   }
 })
 

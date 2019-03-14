@@ -1,3 +1,5 @@
+'use strict'
+
 // const { parseJSON } = require('./json')
 
 const bodyParser = (res, cb) => {

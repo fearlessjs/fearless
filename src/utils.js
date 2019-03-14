@@ -1,3 +1,5 @@
+'use strict'
+
 const isObjectOrArray = body => ['Object', 'Array'].includes(typeof body)
 const isArray = param => Array.isArray(param)
 

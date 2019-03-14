@@ -1,3 +1,5 @@
+'use strict'
+
 const { getResponse } = require('./utils')
 const { HTTP } = require('./constants')
 

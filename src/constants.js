@@ -1,3 +1,5 @@
+'use strict'
+
 const HTTP = Object.freeze({
   GET: 'GET',
   POST: 'POST',

@@ -1,0 +1,16 @@
+# FILES
+.editorconfig
+.gitattributes
+.gitignore
+.github
+.travis.yml
+.eslintrc.json
+.huskyrc.json
+.lintstagedrc.json
+README.md
+CODE_OF_CONDUCT.md
+CONTRIBUTING.md
+
+# FOLDERS
+coverage/
+tools/

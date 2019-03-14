@@ -1,6 +1,18 @@
-# Fearless
+# Fearless (BETA) - Not yet recommended for production
 
-### Next eneration functional programming framework for NodeJS
+⚡️microframework focused on productivity and performance so that developers can work less is to produce more without having risks in compromising performance
+
+
+## 🎩 &nbsp; Features
+
+- 🧘 **Zero config and easy.** Made to start and use.
+- ⚡️ **Blazing Fast.** Support uWS(C++) where you have more performance.
+- 🎛 **Pluggable.** With middlewares
+- 🔐 **Typescript Support.** We have a full support for your type definitions.
+
+## 🗃 &nbsp; Examples
+
+- **[helloWorld](https://github.com/fearlessjs/examples/tree/master/examples/helloWorld/index.js)** - Some helloWorld example
 
 ## Install
 
@@ -14,12 +26,14 @@ yarn add @fearless/fearless
 npm install @fearless/fearless
 ```
 
+## Simple example
 
-## Lines 
-- [x] body || 30 lines
-- [x] index || 78 lines
-- [x] json || 12 lines
-- [x] routes || 65 lines
-- [x] verbs || 46 lines
+```js
+const { fearless, get } = require('@fearless/fearless')
 
-total lines = 231 lines
+const index = get('/', (req, res) => res.send('ping =D!'))
+const ping = get('/ping', (req, res) => res.send('ping =D!'))
+const helloWorld = get('/hello-world', (req, res) => res.send('Hello, World!'))
+
+fearless([index, ping, helloWorld])
+```

@@ -4,6 +4,7 @@ const uWS = require('uWebSockets.js')
 const { getSSLDefault, getListenDefault, getOptions } = require('./utils')
 
 const http = require('./http')
+const json = require('./json')
 
 /**
  *
@@ -29,5 +30,6 @@ const fearless = options => {
 
 module.exports = {
   fearless,
-  ...http
+  ...http,
+  json
 }

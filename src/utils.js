@@ -4,6 +4,9 @@ const { HTTP } = require('./constants')
 
 const isObjectOrArray = body => ['Object', 'Array'].includes(typeof body)
 const isArray = param => Array.isArray(param)
+const isAsyncFunction = f =>
+  f.constructor.toString() ===
+  'function AsyncFunction() { [native code] }'
 
 const getResponse = res => ({
   send: (...params) => {
@@ -61,6 +64,7 @@ const getMethods = method =>
 module.exports = {
   isObjectOrArray,
   isArray,
+  isAsyncFunction,
   getResponse,
   getSSLDefault,
   getOptions,

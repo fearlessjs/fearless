@@ -1,11 +1,29 @@
-const stringify = require('fast-json-stringify')
-const simdjson = require('simdjson')
+// const { parseJSON } = require('./json')
 
-const parseJSON = simdjson.parse
-const isValidJSON = simdjson.isValid
+const bodyParser = (res, cb) => {
+  let buffer
+  /* Register data cb */
+  res.onData((ab, isLast) => {
+    let chunk = Buffer.from(ab)
+    if (isLast) {
+      if (buffer) {
+        cb(JSON.parse(Buffer.concat([buffer, chunk])))
+      } else {
+        cb(JSON.parse(chunk))
+      }
+    } else {
+      if (buffer) {
+        buffer = Buffer.concat([buffer, chunk])
+      } else {
+        buffer = Buffer.concat([chunk])
+      }
+    }
+  })
 
-module.exports = {
-  parseJSON,
-  isValidJSON,
-  stringify
+  /* Register error cb */
+  res.onAborted(() => {
+    console.log('Ugh!')
+  })
 }
+
+module.exports.bodyParser = bodyParser

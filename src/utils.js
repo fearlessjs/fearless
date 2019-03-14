@@ -1,5 +1,7 @@
 'use strict'
 
+const { HTTP } = require('./constants')
+
 const isObjectOrArray = body => ['Object', 'Array'].includes(typeof body)
 const isArray = param => Array.isArray(param)
 
@@ -44,11 +46,22 @@ const getOptions = options => ({
   ...options
 })
 
+const getMethods = method =>
+  method === HTTP.WEB_SOCKET
+    ? (pattern, options, handlers) => ({
+      method: HTTP.WEB_SOCKET,
+      pattern,
+      options,
+      handlers
+    })
+    : (pattern, handler) => ({ method: HTTP[method], pattern, handler })
+
 module.exports = {
   isObjectOrArray,
   isArray,
   getResponse,
   getSSLDefault,
   getOptions,
-  getListenDefault
+  getListenDefault,
+  getMethods
 }

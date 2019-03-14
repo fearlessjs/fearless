@@ -21,16 +21,13 @@ const ws = (pattern, options, handlers) => ({
 })
 
 const setHandler = app => ({ pattern, type, handler, options, handlers }) => {
-  switch (type) {
-    case HTTP.WEB_SOCKET:
-      app.ws(pattern, {
-        ...options,
-        ...handlers
-      })
-      break
-    case HTTP.GET:
-      app.get(pattern, (res, req) => handler(req, getResponse(res)))
+  if (type === HTTP.WEB_SOCKET) {
+    app[type](pattern, {
+      ...options,
+      ...handlers
+    })
   }
+  app[type](pattern, (res, req) => handler(req, getResponse(res)))
 
   //   if (equals(type, HTTP.POST)) {
   //     app.post(pattern, (res, req) => {

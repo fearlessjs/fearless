@@ -33,10 +33,10 @@ npm install @fearless/fearless
 ```js
 const { fearless, get, send } = require("@fearless/fearless");
 
-const index = get("/", (req, res) => send(200, "ping =D!", res));
-const ping = get("/ping", (req, res) => send(200, "ping =D!", res));
+const index = get("/", (req, res) => send(res, 200, "index =D!"));
+const ping = get("/ping", (req, res) => send(res, 200, "ping =D!"));
 const helloWorld = get("/hello-world", (req, res) =>
-  send(200, "Hello, World!", res)
+  send(res, 200, "Hello, World!")
 );
 
 fearless([index, ping, helloWorld]);
@@ -47,9 +47,21 @@ fearless([index, ping, helloWorld]);
 ```js
 const { fearless, get, send, sendAsync } = require("@fearless/fearless");
 
-const ping = get("/ping", (req, res) =>
-  sendAsync(200, async () => "Hello, World", res)
+const helloWorld = get("/ping", (req, res) =>
+  sendAsync(res, 200, async () => "Hello, World")
 );
 
-fearless([index, ping, helloWorld]);
+fearless([helloWorld]);
+```
+
+## Body JSON with POST
+
+```js
+const { fearless, post, send } = require("@fearless/fearless");
+
+const createUser = post("/", (req, res) => {
+  send(res, 200, req.body)
+}
+
+fearless([createUser]);
 ```

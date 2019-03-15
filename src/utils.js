@@ -2,7 +2,7 @@
 
 const { HTTP } = require('./constants')
 
-const isObjectOrArray = body => ['Object', 'Array'].includes(typeof body)
+const isObjectOrArray = body => typeof body === 'object' || Array.isArray(body)
 const isArray = param => Array.isArray(param)
 
 const getRequest = (req, body) => {

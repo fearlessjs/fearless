@@ -1,4 +1,3 @@
-const { isValid, parse } = require('simdjson')
 const { getRequest } = require('./utils')
 
 const json = (res, req, cb, err) => {
@@ -9,12 +8,20 @@ const json = (res, req, cb, err) => {
     if (isLast) {
       let json = null
       if (buffer) {
-        const concat = Buffer.concat([buffer, chunk])
-        json = isValid(concat) ? parse(concat) : {}
+        try {
+          json = JSON.parse(Buffer.concat([buffer, chunk]))
+        } catch (e) {
+          res.close()
+          return
+        }
         cb(getRequest(req, json), res)
       } else {
-        json = isValid(chunk) ? parse(chunk) : {}
-        JSON.parse(chunk)
+        try {
+          json = JSON.parse(chunk)
+        } catch (e) {
+          cb(getRequest(req, json), res)
+          return
+        }
         cb(getRequest(req, json), res)
       }
     } else {
@@ -25,6 +32,9 @@ const json = (res, req, cb, err) => {
       }
     }
   })
+
+  /* Register error cb */
+  res.onAborted(err)
 }
 
 module.exports = json

@@ -2,6 +2,7 @@
 
 const { getMethods } = require('./utils')
 const { HTTP } = require('./constants')
+const json = require('./json')
 
 const [
   get,
@@ -28,7 +29,7 @@ const setHandler = (
     })
   }
 
-  app[method](pattern, (res, req) => handler(req, res))
+  app[method](pattern, (res, req) => json(res, req, handler))
 }
 
 module.exports = {

@@ -1,20 +1,20 @@
-const send = async (statusCode, data, res) => {
-  if (statusCode) {
-    res.writeStatus(statusCode.toString())
-  }
-  res.end(JSON.stringify(data))
+const { isObjectOrArray } = require('./utils')
+
+const send = async (res, statusCode, data) => {
+  res.writeStatus(statusCode.toString())
+  res.end(isObjectOrArray(data) ? JSON.stringify(data) : data)
 }
 
-const sendAsync = async (statusCode = 200, f, res) => {
+const sendAsync = async (res, statusCode, handler) => {
   res.onAborted(() => {
     res.aborted = true
   })
 
-  let result = await f()
+  let data = await handler()
 
   if (!res.aborted) {
     res.writeStatus(statusCode.toString())
-    res.end(JSON.stringify(result))
+    res.end(isObjectOrArray(data) ? JSON.stringify(data) : data)
   }
 }
 

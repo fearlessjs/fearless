@@ -1,6 +1,8 @@
-const json = (res) => {
-  let buffer
+const { getRequest } = require('./utils')
 
+const json = (res, req, cb, err) => {
+  let buffer
+  /* Register data cb */
   res.onData((ab, isLast) => {
     let chunk = Buffer.from(ab)
     if (isLast) {
@@ -9,18 +11,20 @@ const json = (res) => {
         try {
           json = JSON.parse(Buffer.concat([buffer, chunk]))
         } catch (e) {
+          /* res.close calls onAborted */
           res.close()
           return
         }
-        return json
+        cb(getRequest(req, json), res)
       } else {
         try {
           json = JSON.parse(chunk)
         } catch (e) {
+          /* res.close calls onAborted */
           res.close()
           return
         }
-        return json
+        cb(getRequest(req, json), res)
       }
     } else {
       if (buffer) {
@@ -31,9 +35,8 @@ const json = (res) => {
     }
   })
 
-  res.onAborted(() => {
-    console.error('JSON invalid')
-  })
+  /* Register error cb */
+  res.onAborted(err)
 }
 
 module.exports = json

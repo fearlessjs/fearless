@@ -1,4 +1,4 @@
-const { getRequest } = require('./utils')
+const { getRequestWithBody } = require('./utils')
 
 const json = (res, req, cb, err) => {
   let buffer
@@ -14,15 +14,15 @@ const json = (res, req, cb, err) => {
           res.close()
           return
         }
-        cb(getRequest(req, json), res)
+        cb(getRequestWithBody(req, json), res)
       } else {
         try {
           json = JSON.parse(chunk)
         } catch (e) {
-          cb(getRequest(req, json), res)
+          cb(getRequestWithBody(req, json), res)
           return
         }
-        cb(getRequest(req, json), res)
+        cb(getRequestWithBody(req, json), res)
       }
     } else {
       if (buffer) {

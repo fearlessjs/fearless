@@ -1,6 +1,6 @@
 'use strict'
 
-const { getMethods } = require('./utils')
+const { getMethods, getRequest } = require('./utils')
 const { HTTP } = require('./constants')
 const json = require('./json')
 
@@ -29,7 +29,7 @@ const setHandler = (
     })
   }
 
-  app[method](pattern, (res, req) => json(res, req, handler))
+  app[method](pattern, (res, req) => json(res, getRequest(req), handler))
 }
 
 module.exports = {

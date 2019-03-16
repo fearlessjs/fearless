@@ -1,5 +1,7 @@
 'use strict'
 
+const querystringify = require('querystringify')
+
 const { getMethods } = require('./utils')
 const { HTTP } = require('./constants')
 const json = require('./json')
@@ -29,7 +31,10 @@ const setHandler = (
     })
   }
 
-  app[method](pattern, (res, req) => json(res, req, handler))
+  app[method](pattern, (res, req) => {
+    req.query = querystringify.parse(req.getQuery())
+    return json(res, req, handler)
+  })
 }
 
 module.exports = {

@@ -1,7 +1,7 @@
 {
   "name": "@fearless/fearless",
   "description": "Fearless MicroFramework Node",
-  "version": "0.1.0-beta.5",
+  "version": "0.1.0-beta.6",
   "author": "Rodrigo Oler <https://github.com/rodrigooler>",
   "bugs": {
     "url": "https://github.com/fearlessjs/fearless/issues"

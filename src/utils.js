@@ -7,6 +7,10 @@ const isArray = param => Array.isArray(param)
 
 const getRequest = (req, body) => {
   req.body = body
+  req.header = req.getHeader()
+  req.method = req.getMethod()
+  req.query = req.getQuery()
+  req.url = req.getUrl()
   return req
 }
 

@@ -29,7 +29,10 @@ const setHandler = (
     })
   }
 
-  app[method](pattern, (res, req) => json(res, getRequest(req), handler))
+  app[method](pattern, (res, req) => {
+    middlewares.forEach(m => m(req, res))
+    json(res, getRequest(req), handler)
+  })
 }
 
 module.exports = {

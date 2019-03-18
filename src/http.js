@@ -1,6 +1,6 @@
 'use strict'
 
-const { getMethods, getRequest } = require('./utils')
+const { getMethods } = require('./utils')
 const { HTTP } = require('./constants')
 const json = require('./json')
 
@@ -20,7 +20,8 @@ const [
 
 const setHandler = (
   app,
-  { pattern, method, handler, options, handlers, middlewares }
+  { pattern, method, handler, options, handlers },
+  middlewares
 ) => {
   if (method === HTTP.WEB_SOCKET) {
     app[method](pattern, {
@@ -31,7 +32,7 @@ const setHandler = (
 
   app[method](pattern, (res, req) => {
     middlewares.forEach(m => m(req, res))
-    json(res, getRequest(req), handler)
+    json(res, req, handler)
   })
 }
 

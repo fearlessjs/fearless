@@ -21,7 +21,9 @@ const { sendAsync, send } = require('./send')
  * @param {Array<Function>=} options.middlewares
  */
 const fearless = options => {
-  const { ssl, handlers = [], listen, middlewares } = getOptions(options)
+  const { ssl, handlers = [], listen, middlewares = [] } = getOptions(options)
+
+  console.log('DIASUHDAUSHD XXX', ssl, handlers, listen, middlewares)
 
   const app = uWS.App(getSSLDefault(ssl))
   handlers.forEach(handler => http.setHandler(app, handler, middlewares))

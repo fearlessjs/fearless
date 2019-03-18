@@ -5,14 +5,6 @@ const { HTTP } = require('./constants')
 const isObjectOrArray = body => typeof body === 'object' || Array.isArray(body)
 const isArray = param => Array.isArray(param)
 
-const getRequest = req => {
-  req.header = req.getHeader()
-  req.method = req.getMethod()
-  req.query = req.getQuery()
-  req.url = req.getUrl()
-  return req
-}
-
 const getRequestWithBody = (req, body) => {
   req.body = body
   return req
@@ -43,6 +35,7 @@ const getOptions = options => ({
   ssl: {},
   cors: null,
   handlers: options,
+  middleware: [],
   listen: {
     port: 3000,
     handler: null
@@ -67,6 +60,5 @@ module.exports = {
   getOptions,
   getListenDefault,
   getMethods,
-  getRequest,
   getRequestWithBody
 }

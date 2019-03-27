@@ -57,11 +57,15 @@ fearless([helloWorld]);
 ## Body JSON with POST
 
 ```js
-const { fearless, post, send } = require("@fearless/fearless");
+const { fearless, post, sendAsync } = require("@fearless/fearless");
+const json = require("@fearless/json");
 
-const createUser = post("/", (req, res) => {
-  send(res, 200, req.body)
+const postExample = post("/", (req, res) => {
+  sendAsync(res, 200, async () => {
+    const data = await json(res)
+    return data
+  })
 }
 
-fearless([createUser]);
+fearless([postExample]);
 ```

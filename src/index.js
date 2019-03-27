@@ -23,8 +23,6 @@ const { sendAsync, send, sendError } = require('./send')
 const fearless = options => {
   const { ssl, handlers = [], listen, middlewares = [] } = getOptions(options)
 
-  console.log('DIASUHDAUSHD XXX', ssl, handlers, listen, middlewares)
-
   const app = uWS.App(getSSLDefault(ssl))
   handlers.forEach(handler => http.setHandler(app, handler, middlewares))
   app.listen(listen.port, getListenDefault(listen))

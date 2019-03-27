@@ -1,7 +1,7 @@
 {
   "name": "@fearless/fearless",
   "description": "⚡️microframework focused on productivity and performance so that developers can work less is to produce more without having risks in compromising performance",
-  "version": "0.1.0-beta.9",
+  "version": "0.1.0-beta.10",
   "author": "Rodrigo Oler <https://github.com/rodrigooler>",
   "bugs": {
     "url": "https://github.com/fearlessjs/fearless/issues"

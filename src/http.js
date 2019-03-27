@@ -2,7 +2,6 @@
 
 const { getMethods } = require('./utils')
 const { HTTP } = require('./constants')
-const json = require('./json')
 
 const [
   get,
@@ -32,7 +31,7 @@ const setHandler = (
 
   app[method](pattern, (res, req) => {
     middlewares.forEach(m => m(req, res))
-    json(res, req, handler)
+    handler(req, res)
   })
 }
 

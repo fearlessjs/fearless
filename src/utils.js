@@ -5,11 +5,6 @@ const { HTTP } = require('./constants')
 const isObjectOrArray = body => typeof body === 'object' || Array.isArray(body)
 const isArray = param => Array.isArray(param)
 
-const getRequestWithBody = (req, body) => {
-  req.body = body
-  return req
-}
-
 const getSSLDefault = ssl =>
   ssl
     ? {
@@ -59,6 +54,5 @@ module.exports = {
   getSSLDefault,
   getOptions,
   getListenDefault,
-  getMethods,
-  getRequestWithBody
+  getMethods
 }

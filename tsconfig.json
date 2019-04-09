@@ -1,8 +1,19 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "esnext",
     "module": "commonjs",
-    "strict": true,
-    "esModuleInterop": true
+    "moduleResolution": "node",
+    "lib": [
+      "esnext",
+    ],
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "isolatedModules": false,
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true
   }
 }

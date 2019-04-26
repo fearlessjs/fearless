@@ -1,26 +1,22 @@
-import {HttpRequest, HttpResponse} from 'uWebSockets.js';
+import { HttpRequest, HttpResponse } from 'uWebSockets.js'
 
 interface ISSL {
-    keyFileName?: string
-    certFileName?: string
-    passphrase?: string
-    dhParamsFileName?: string
+  keyFileName?: string
+  certFileName?: string
+  passphrase?: string
+  dhParamsFileName?: string
 }
 
 interface IListen {
-    port: number
-    handler: Function
+  port: number
+  handler: Function
 }
 
 interface IFearlessConfig {
-    handlers?: Function[]
-    listen: IListen
-    ssl?: ISSL
-    middlewares?: Function[]
+  handlers?: Function[]
+  listen: IListen
+  ssl?: ISSL
+  middlewares?: Function[]
 }
 
-export {
-    IFearlessConfig,
-    HttpRequest,
-    HttpResponse
-}
+export { IFearlessConfig, HttpRequest, HttpResponse }

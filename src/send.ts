@@ -1,18 +1,28 @@
-import { HttpResponse } from "./interfaces";
+import { HttpResponse } from './interfaces'
 
-const isObjectOrArray = (body: Object): boolean => typeof body === 'object' || Array.isArray(body)
+const isObjectOrArray = (body: Object): boolean =>
+  typeof body === 'object' || Array.isArray(body)
 
 const send = (res: HttpResponse, statusCode: number, data: Object): void => {
   res.writeStatus(statusCode.toString())
   // res.end(isObjectOrArray(data) ? JSON.stringify(data) : data)
 }
 
-const sendError = (res: HttpResponse, statusCode: number, message: string | null = null, stack: string | null = null): void => {
+const sendError = (
+  res: HttpResponse,
+  statusCode: number,
+  message: string | null = null,
+  stack: string | null = null
+): void => {
   res.writeStatus(statusCode.toString())
   res.end(JSON.stringify({ message, stack }))
 }
 
-const sendAsync = async (res: HttpResponse, statusCode: number, handler: Function) => {
+const sendAsync = async (
+  res: HttpResponse,
+  statusCode: number,
+  handler: Function
+) => {
   res.onAborted(() => {
     res.aborted = true
   })

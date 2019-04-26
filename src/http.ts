@@ -15,11 +15,11 @@ const HTTP = Object.freeze({
 const getMethods = method =>
   method === HTTP.WEB_SOCKET
     ? (pattern, options, handlers) => ({
-      method,
-      pattern,
-      options,
-      handlers
-    })
+        method,
+        pattern,
+        options,
+        handlers
+      })
     : (pattern, handler) => ({ method, pattern, handler })
 
 const [

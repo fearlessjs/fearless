@@ -37,8 +37,10 @@
     "url": "git+ssh://git@github.com/fearlessjs/fearless.git"
   },
   "scripts": {
+    "build": "tsc",
     "clear": "rm -rf yarn.lock node_modules && yarn",
     "lines": "npx cloc src/",
-    "standard": "standard --fix"
+    "standard": "standard --fix",
+    "watch": "tsc -w"
   }
 }

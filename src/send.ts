@@ -1,16 +1,18 @@
-const { isObjectOrArray } = require('./utils')
+import { HttpResponse } from "./interfaces";
 
-const send = (res, statusCode, data) => {
+const isObjectOrArray = (body: Object): boolean => typeof body === 'object' || Array.isArray(body)
+
+const send = (res: HttpResponse, statusCode: number, data: Object): void => {
   res.writeStatus(statusCode.toString())
-  res.end(isObjectOrArray(data) ? JSON.stringify(data) : data)
+  // res.end(isObjectOrArray(data) ? JSON.stringify(data) : data)
 }
 
-const sendError = (res, statusCode, message = null, stack = null) => {
+const sendError = (res: HttpResponse, statusCode: number, message: string | null = null, stack: string | null = null): void => {
   res.writeStatus(statusCode.toString())
   res.end(JSON.stringify({ message, stack }))
 }
 
-const sendAsync = async (res, statusCode, handler) => {
+const sendAsync = async (res: HttpResponse, statusCode: number, handler: Function) => {
   res.onAborted(() => {
     res.aborted = true
   })
@@ -29,7 +31,7 @@ const sendAsync = async (res, statusCode, handler) => {
   }
 }
 
-module.exports = {
+export default {
   send,
   sendAsync,
   sendError

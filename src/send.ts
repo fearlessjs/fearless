@@ -1,6 +1,6 @@
 import { HttpResponse } from './interfaces'
 
-const isObjectOrArray = (body: Object): boolean =>
+const isObjectOrArray = (body: Object | Array<any>): boolean =>
   typeof body === 'object' || Array.isArray(body)
 
 const send = (res: HttpResponse, statusCode: number, data: Object): void => {

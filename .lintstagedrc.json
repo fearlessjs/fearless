@@ -1,5 +1,6 @@
 {
   "*.ts": [
-    "git add"
+      "prettier --write",
+      "git add"
   ]
 }

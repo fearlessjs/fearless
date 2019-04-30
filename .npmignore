@@ -2,7 +2,6 @@
 .editorconfig
 .gitattributes
 .gitignore
-.github
 .travis.yml
 .eslintrc.json
 .huskyrc.json
@@ -10,9 +9,12 @@
 README.md
 CODE_OF_CONDUCT.md
 CONTRIBUTING.md
-.fearless.js
 
 # FOLDERS
 coverage/
 tools/
 node_modules/
+.github
+benchmarks/
+docs/
+examples/

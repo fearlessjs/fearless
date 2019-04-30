@@ -5,7 +5,6 @@
   "insertPragma": false,
   "jsxBracketSameLine": false,
   "jsxSingleQuote": true,
-  "parser": "typescript",
   "printWidth": 80,
   "proseWrap": "preserve",
   "quoteProps": "as-needed",

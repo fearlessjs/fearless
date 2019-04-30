@@ -1,7 +1,7 @@
 {
   "name": "@fearless/fearless",
-  "description": "⚡️microframework focused on productivity and performance so that developers can work less is to produce more without having risks in compromising performance",
-  "version": "0.1.0-beta.11",
+  "description": "⚡️Small and scary micro framework",
+  "version": "0.1.0-beta.12",
   "author": "Rodrigo Oler <https://github.com/rodrigooler>",
   "bugs": {
     "url": "https://github.com/fearlessjs/fearless/issues"
@@ -12,11 +12,7 @@
   "devDependencies": {
     "husky": "2.1.0",
     "lint-staged": "8.1.5",
-    "prettier": "1.17.0",
-    "tslint": "5.16.0",
-    "tslint-config-airbnb": "5.11.1",
-    "tslint-config-prettier": "1.18.0",
-    "typescript": "3.4.5"
+    "prettier": "1.17.0"
   },
   "homepage": "https://github.com/fearlessjs/fearless#readme",
   "keywords": [
@@ -37,11 +33,10 @@
     "url": "git+ssh://git@github.com/fearlessjs/fearless.git"
   },
   "scripts": {
-    "prettier": "prettier --write '{.,__tests__,./**, ./src/**}/*.ts'",
     "build": "tsc",
     "clear": "rm -rf yarn.lock node_modules && yarn",
     "lines": "npx cloc src/",
-    "standard": "standard --fix",
+    "prettier": "prettier --write '{.,__tests__,./**, ./src/**}/*.ts'",
     "watch": "tsc -w"
   }
 }

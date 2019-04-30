@@ -9,6 +9,21 @@
   dependencies:
     regenerator-runtime "^0.12.0"
 
+"@fearless/cors@^0.1.4":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@fearless/cors/-/cors-0.1.4.tgz#f285994b999caa633f55ec7e93ecf6441931dbc4"
+  integrity sha512-jpaXBJ1U3ILNMbbhmqH+uE2bx7Z4qOBQSIDNY5opwsqgT4yYAaLc5SSqOatNg5sc0DxJEDbwciak0cb3hwg2lQ==
+
+"@fearless/json@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@fearless/json/-/json-0.1.0.tgz#fe2eb49c7d2ba61a421878f5c5282a3d0619a812"
+  integrity sha512-34PGSvnbUV+ZyACFd26HuVd2ZkvGS9yWQ+vMUnPFSuNvgnj1KAGrHP5iCQydM+c6H1U3bt+NeMhB7Wd6/fna9w==
+
+"@fearless/listen@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@fearless/listen/-/listen-0.1.0.tgz#948dd25c82ca821b9bdd0c4c4ce5919b843ad5fa"
+  integrity sha512-fttKpoSRUfaGE3PklKt2J0K8yt1BMJuzMcvD9lvqCyJjYYNSelX/Ivt4YZ8q5bcaPvhi82v96U6BJeJzIYgDeQ==
+
 "@samverschueren/stream-to-observable@^0.3.0":
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/@samverschueren/stream-to-observable/-/stream-to-observable-0.3.0.tgz#ecdf48d532c58ea477acfcab80348424f8d0662f"
@@ -1295,6 +1310,11 @@ pump@^3.0.0:
   dependencies:
     end-of-stream "^1.1.0"
     once "^1.3.1"
+
+ramda@^0.26.1:
+  version "0.26.1"
+  resolved "https://registry.yarnpkg.com/ramda/-/ramda-0.26.1.tgz#8d41351eb8111c55353617fc3bbffad8e4d35d06"
+  integrity sha512-hLWjpy7EnsDBb0p+Z3B7rPi3GDeRG5ZtiI33kJhTt+ORCd38AbAIjB/9zRIUoeTbE/AVX5ZkU7m6bznsvrf8eQ==
 
 read-pkg@^5.0.0:
   version "5.1.1"

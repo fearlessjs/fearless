@@ -10,9 +10,13 @@
     "uWebSockets.js": "github:uNetworking/uWebSockets.js#v15.10.0"
   },
   "devDependencies": {
+    "@fearless/cors": "^0.1.4",
+    "@fearless/json": "^0.1.0",
+    "@fearless/listen": "^0.1.0",
     "husky": "2.1.0",
     "lint-staged": "8.1.5",
-    "prettier": "1.17.0"
+    "prettier": "1.17.0",
+    "ramda": "^0.26.1"
   },
   "homepage": "https://github.com/fearlessjs/fearless#readme",
   "keywords": [

@@ -1,6 +1,6 @@
 {
   "name": "@fearless/fearless",
-  "description": "⚡️Small and scary micro framework",
+  "description": "⚡️Small and Scary microframework",
   "version": "0.1.0-beta.12",
   "author": "Rodrigo Oler <https://github.com/rodrigooler>",
   "bugs": {
@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/fearlessjs/fearless#readme",
   "keywords": [
+    "agile",
     "fast",
     "fearless",
     "framework",
@@ -27,8 +28,7 @@
     "micro",
     "microframework",
     "node",
-    "performance",
-    "agile"
+    "performance"
   ],
   "license": "MIT",
   "main": "src/index.js",
@@ -39,7 +39,8 @@
   "scripts": {
     "build": "rollup -c",
     "clear": "rm -rf yarn.lock node_modules && yarn",
-    "lines": "npx cloc src/",
+    "example:one": "node examples/post.js",
+    "lines": "npx cloc lib/",
     "prettier": "prettier --write '{.,__tests__,./**, ./src/**}/*.ts'",
     "watch": "tsc -w"
   }

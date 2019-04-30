@@ -39,7 +39,7 @@
     "performance"
   ],
   "license": "MIT",
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/fearlessjs/fearless.git"

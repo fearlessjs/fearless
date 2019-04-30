@@ -24,7 +24,7 @@
     "microframework",
     "node",
     "performance",
-    "typescript"
+    "agile"
   ],
   "license": "MIT",
   "main": "src/index.js",
@@ -33,7 +33,7 @@
     "url": "git+ssh://git@github.com/fearlessjs/fearless.git"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "rollup -c",
     "clear": "rm -rf yarn.lock node_modules && yarn",
     "lines": "npx cloc src/",
     "prettier": "prettier --write '{.,__tests__,./**, ./src/**}/*.ts'",

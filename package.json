@@ -1,30 +1,30 @@
 {
   "name": "@fearless/fearless",
   "description": "⚡️Small and Scary microframework",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Rodrigo Oler <https://github.com/rodrigooler>",
   "bugs": {
     "url": "https://github.com/fearlessjs/fearless/issues"
   },
   "dependencies": {
-    "uWebSockets.js": "github:uNetworking/uWebSockets.js#v15.10.0"
+    "uWebSockets.js": "github:uNetworking/uWebSockets.js#v15.11.0"
   },
   "devDependencies": {
     "@fearless/cors": "0.1.4",
     "@fearless/json": "0.1.0",
     "@fearless/listen": "0.1.0",
-    "docusaurus": "1.10.0",
-    "express": "4.17.0",
-    "fastify": "2.3.0",
+    "docusaurus": "1.11.1",
+    "express": "4.17.1",
+    "fastify": "2.6.0",
     "hapi": "18.1.0",
-    "husky": "2.3.0",
+    "husky": "3.0.0",
     "koa": "2.7.0",
-    "lint-staged": "8.1.7",
+    "lint-staged": "9.1.0",
     "micro": "9.3.4",
-    "prettier": "1.17.1",
+    "prettier": "1.18.2",
     "ramda": "0.26.1",
-    "restify": "8.3.2",
-    "uglify-js": "3.5.15"
+    "restify": "8.3.3",
+    "uglify-js": "3.6.0"
   },
   "homepage": "https://github.com/fearlessjs/fearless#readme",
   "husky": {

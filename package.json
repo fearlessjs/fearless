@@ -13,7 +13,6 @@
     "@fearless/cors": "0.1.4",
     "@fearless/json": "0.1.0",
     "@fearless/listen": "0.1.0",
-    "docusaurus": "1.12.0",
     "express": "4.17.1",
     "fastify": "2.7.1",
     "hapi": "18.1.0",
@@ -23,8 +22,7 @@
     "micro": "9.3.4",
     "prettier": "1.18.2",
     "ramda": "0.26.1",
-    "restify": "8.4.0",
-    "uglify-js": "3.6.0"
+    "restify": "8.4.0"
   },
   "homepage": "https://github.com/fearlessjs/fearless#readme",
   "husky": {
@@ -73,16 +71,7 @@
     "url": "git+ssh://git@github.com/fearlessjs/fearless.git"
   },
   "scripts": {
-    "build": "cat ./lib/* | ./node_modules/.bin/uglifyjs --compress --mangle -o fearless.js",
     "clear": "rm -rf yarn.lock node_modules && yarn",
-    "docusaurus:build": "docusaurus-build",
-    "docusaurus:examples": "docusaurus-examples",
-    "docusaurus:publish-gh-pages": "docusaurus-publish",
-    "docusaurus:rename-version": "docusaurus-rename-version",
-    "docusaurus:start": "docusaurus-start",
-    "docusaurus:version": "docusaurus-version",
-    "docusaurus:write-translations": "docusaurus-write-translations",
-    "example:one": "node examples/post.js",
     "lines": "npx cloc lib/",
     "prettier": "prettier --write '{.,__tests__,./**, ./src/**}/*.js'",
     "watch": "tsc -w"

@@ -7,18 +7,18 @@
     "url": "https://github.com/fearlessjs/fearless/issues"
   },
   "dependencies": {
-    "uWebSockets.js": "github:uNetworking/uWebSockets.js#v15.11.0"
+    "uWebSockets.js": "github:uNetworking/uWebSockets.js#v16.1.0"
   },
   "devDependencies": {
     "@fearless/cors": "0.1.4",
     "@fearless/json": "0.1.0",
     "@fearless/listen": "0.1.0",
     "express": "4.17.1",
-    "fastify": "2.7.1",
+    "fastify": "2.10.0",
     "hapi": "18.1.0",
-    "husky": "3.0.4",
-    "koa": "2.8.1",
-    "lint-staged": "9.2.3",
+    "husky": "3.0.9",
+    "koa": "2.10.0",
+    "lint-staged": "9.4.2",
     "micro": "9.3.4",
     "prettier": "1.18.2",
     "ramda": "0.26.1",

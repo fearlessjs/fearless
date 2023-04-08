@@ -1,36 +1,15 @@
 {
   "name": "@fearless/fearless",
   "description": "⚡️Small and Scary microframework",
-  "version": "0.1.1",
+  "version": "0.2.0-beta.1",
   "author": "Rodrigo Oler <https://github.com/rodrigooler>",
   "bugs": {
     "url": "https://github.com/fearlessjs/fearless/issues"
   },
   "dependencies": {
-    "uWebSockets.js": "github:uNetworking/uWebSockets.js#v16.1.0"
-  },
-  "devDependencies": {
-    "@fearless/cors": "0.1.4",
-    "@fearless/fearless": "^0.1.1",
-    "@fearless/json": "0.1.0",
-    "@fearless/listen": "0.1.0",
-    "express": "4.17.1",
-    "fastify": "2.10.0",
-    "hapi": "18.1.0",
-    "husky": "3.0.9",
-    "koa": "2.11.0",
-    "lint-staged": "9.4.3",
-    "micro": "9.3.4",
-    "prettier": "1.19.1",
-    "ramda": "0.26.1",
-    "restify": "8.4.0"
+    "uWebSockets.js": "github:uNetworking/uWebSockets.js#v20.20.0"
   },
   "homepage": "https://github.com/fearlessjs/fearless#readme",
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "keywords": [
     "agile",
     "fast",
@@ -43,38 +22,9 @@
     "performance"
   ],
   "license": "MIT",
-  "lint-staged": {
-    "*.js": [
-      "prettier --write",
-      "git add"
-    ]
-  },
   "main": "lib/index.js",
-  "prettier": {
-    "arrowParens": "avoid",
-    "bracketSpacing": true,
-    "htmlWhitespaceSensitivity": "css",
-    "insertPragma": false,
-    "jsxBracketSameLine": false,
-    "jsxSingleQuote": true,
-    "printWidth": 80,
-    "proseWrap": "preserve",
-    "quoteProps": "as-needed",
-    "requirePragma": false,
-    "semi": false,
-    "singleQuote": true,
-    "tabWidth": 2,
-    "trailingComma": "none",
-    "useTabs": false
-  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/fearlessjs/fearless.git"
-  },
-  "scripts": {
-    "clear": "rm -rf yarn.lock node_modules && yarn",
-    "lines": "npx cloc lib/",
-    "prettier": "prettier --write '{.,__tests__,./**, ./src/**}/*.js'",
-    "watch": "tsc -w"
   }
 }

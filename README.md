@@ -4,67 +4,42 @@
 
 ## 🎩 &nbsp; Features
 
+- 📦 **Fast install.** We have a fast install with a small size.
 - 🧘 **Zero config and easy.** Made to start and use.
 - ⚡️ **Blazing Fast.** Support uWS(C++) where you have more performance.
 - 🎛 **Pluggable.** With middlewares
 - 🔐 **Typescript Support.** We have a full support for your type definitions.
 
-## 🗃 &nbsp; Examples
+# 🚀 &nbsp; Getting Started
 
-<!--
-- **[helloWorld](https://github.com/fearlessjs/examples/tree/master/examples/helloWorld/index.js)** - Some helloWorld example -->
+## Installation
 
-## Install
-
-#### yarn
-
-```sh
-yarn add @fearless/fearless
+```bash
+npm install @fearlessjs/fearless
 ```
 
-#### npm
+## Usage
 
-```sh
-npm install @fearless/fearless
+```ts
+import { fearless } from '@fearlessjs/fearless'
+import type { Request, Response } from '@fearlessjs/fearless'
+
+const app = fearless()
+
+app.get('/', (req: Request, res: Response): void => {
+  res.end('Hello World from Fearless')
+})
+
+app.listen(3000)
 ```
 
-## GET example
 
-```js
-const fearless = require("@fearless/fearless")
-const { get, send } = require("@fearless/fearless")
+## 📖 &nbsp; Documentation
 
-const ping = get("/ping", (req, res) => send(res, 200, "ping =D!"))
+## 📝 &nbsp; License
 
-fearless([ping])
-```
+Fearless is [MIT licensed](./LICENSE).
 
-## Async/Await example
+## 🤝 &nbsp; Contributing
 
-```js
-const fearless = require("@fearless/fearless")
-const { get, send, sendAsync } = require("@fearless/fearless")
-
-const helloWorld = get("/ping", (req, res) =>
-  sendAsync(res, 200, async () => "Hello, World")
-);
-
-fearless([helloWorld])
-```
-
-## Body JSON with POST
-
-```js
-const fearless = require("@fearless/fearless")
-const { post, sendAsync } = require("@fearless/fearless")
-const json = require("@fearless/json")
-
-const postExample = post("/", (req, res) => {
-  sendAsync(res, 200, async () => {
-    const data = await json(res)
-    return data
-  })
-}
-
-fearless([postExample])
-```
+Contributions, issues and feature requests are welcome!

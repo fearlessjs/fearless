@@ -49,8 +49,23 @@ import type { FRequest, FResponse } from "@fearlessjs/fearless";
 
 const app = new Fearless();
 
+// Exemplo de uso de middleware para query string
+export const queryString = () => {
+  return (req) => {
+    const query = req.getQuery();
+
+    req.query = query.split("&").reduce((acc, cur: string) => {
+      const [key, value] = cur.split("=");
+      acc[key] = value;
+      return acc;
+    }, {}) as Record<string, string>;
+  };
+};
+
+app.use(queryString());
+
 app.get("/", (req: FRequest, res: FResponse) => {
-  res.end("Hello World from Fearless!");
+  res.status(200).send("Hello World from Fearless!");
 });
 
 app.listen(3000, () => {
@@ -64,6 +79,7 @@ app.listen(3000, () => {
 - [Como fazer um POST](#como-fazer-um-post)
 - [Como adicionar middlewares](#como-adicionar-middlewares)
 - [Como criar um middleware customizado](#como-criar-um-middleware-customizado)
+- [Retorno em JSON](#retorno-em-json)
 
 ### Como fazer um GET
 
@@ -73,7 +89,7 @@ Exemplo:
 
 ```typescript
 app.get("/", (req: FRequest, res: FResponse) => {
-  res.end("Hello World!");
+  res.status(200).send("Hello World!");
 });
 ```
 
@@ -85,7 +101,7 @@ Exemplo:
 
 ```typescript
 app.post("/submit", (req: FRequest, res: FResponse) => {
-  res.end("Data submitted!");
+  res.status(200).send("Data submitted!");
 });
 ```
 
@@ -96,12 +112,20 @@ Para adicionar um middleware, utilize o método `use` do objeto Fearless, passan
 Exemplo:
 
 ```typescript
-const loggerMiddleware = (req: FRequest, res: FResponse, next: Function) => {
-  console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
-  next();
+// Exemplo de uso de middleware para query string
+export const queryString = () => {
+  return (req) => {
+    const query = req.getQuery();
+
+    req.query = query.split("&").reduce((acc, cur: string) => {
+      const [key, value] = cur.split("=");
+      acc[key] = value;
+      return acc;
+    }, {}) as Record<string, string>;
+  };
 };
 
-app.use(loggerMiddleware);
+app.use(queryString());
 ```
 
 ### Como criar um middleware customizado
@@ -117,6 +141,23 @@ const customMiddleware = (req: FRequest, res: FResponse, next: Function) => {
 };
 
 app.use(customMiddleware);
+```
+
+### Retorno em JSON
+
+Para retornar dados em formato JSON, utilize o método `send` do objeto de resposta passando o objeto a ser enviado.
+
+Exemplo:
+
+```typescript
+app.get("/user", (req: FRequest, res: FResponse) => {
+  const user = {
+    name: "John Doe",
+    email: "john@example.com",
+  };
+  
+  res.status(200).send(user);
+});
 ```
 
 ## 📝 Licença

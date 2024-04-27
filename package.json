@@ -1,15 +1,20 @@
 {
   "name": "@fearless/fearless",
-  "description": "⚡️Small and Scary microframework",
   "version": "0.2.0-beta.1",
-  "author": "Rodrigo Oler <https://github.com/rodrigooler>",
+  "description": "⚡️ Small and Scary microframework",
+  "author": {
+    "name": "Rodrigo Oler",
+    "url": "https://github.com/rodrigooler"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/fearlessjs/fearless#readme",
   "bugs": {
     "url": "https://github.com/fearlessjs/fearless/issues"
   },
-  "dependencies": {
-    "uWebSockets.js": "github:uNetworking/uWebSockets.js#v20.20.0"
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/fearlessjs/fearless.git"
   },
-  "homepage": "https://github.com/fearlessjs/fearless#readme",
   "keywords": [
     "agile",
     "fast",
@@ -21,10 +26,22 @@
     "node",
     "performance"
   ],
-  "license": "MIT",
-  "main": "lib/index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/fearlessjs/fearless.git"
+  "scripts": {
+    "build": "tsc",
+    "start": "node lib/index.js",
+    "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts"
+  },
+  "dependencies": {
+    "ts-node": "^10.9.2",
+    "uWebSockets.js": "github:uNetworking/uWebSockets.js#v20.43.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.7",
+    "typescript": "^5.4.5",
+    "autocannon": "^7.15.0",
+    "nodemon": "^2.0.15"
+  },
+  "engines": {
+    "node": ">=14.0.0"
   }
 }

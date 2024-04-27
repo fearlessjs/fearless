@@ -1,95 +1,48 @@
-import { Request, Response } from ".";
+import { readJson } from "./helper";
+import { FRequest, FResponse } from "./types";
 
-export enum HTTP {
-  GET = "get",
-  POST = "post",
-  PUT = "put",
-  DEL = "del",
-  OPTIONS = "options",
-  PATCH = "patch",
-  HEAD = "head",
-  CONNECT = "connect",
-  TRACE = "trace",
-  ANY = "any",
-  WEB_SOCKET = "web_socket",
-}
-
-type Method =
-  | {
-      method: HTTP;
-      pattern: string;
-      handler: (req: any, res: any) => void;
-    }
-  | {
-      method: HTTP.WEB_SOCKET;
-      pattern: string;
-      options: any;
-      handlers: any;
-    };
-
-const getMethods = (
-  method: HTTP
-):
-  | ((
-      pattern: string,
-      handler: (req: Request, res: Response) => void
-    ) => Method)
-  | ((pattern: string, options: any, handlers: any) => Method) => {
-  return method === HTTP.WEB_SOCKET
-    ? (pattern: string, options: any, handlers: any): Method => ({
-        method,
-        pattern,
-        options,
-        handlers,
-      })
-    : (pattern: string, handler: (req: any, res: any) => void): Method => ({
-        method,
-        pattern,
-        handler,
-      });
-};
-
-export const setHandler = (
+export const handler = (
   app: any,
   // @ts-ignore
   { pattern, method, handler, options, handlers }: Method,
   middlewares: ((req: any, res: any) => void)[]
 ): void => {
-  if (method === HTTP.WEB_SOCKET) {
-    app[method](pattern, {
-      ...options,
-      ...handlers,
+  app[method](pattern, async (res: FResponse, req: FRequest) => {
+    middlewares.forEach((middleware) => {
+      middleware(req, res);
     });
-  }
 
-  if (handler.constructor.name === "AsyncFunction") {
-    app[method](pattern, async (res: Response, req: Request) => {
-      res.onAborted(() => {
-        res.aborted = true;
+    res.status = (code: number) => {
+      res.writeStatus(code.toString());
+      return res;
+    };
+
+    res.send = (data: any) => {
+      if (typeof data === "object") {
+        res.writeHeader("Content-Type", "application/json");
+        data = JSON.stringify(data);
+      }
+
+      res.writeHeader("Content-Type", "text/html");
+
+      res.end(data);
+      return res;
+    };
+
+    if (method !== "get") {
+      req.body = readJson(res);
+    }
+
+    try {
+      handler.constructor.name === "AsyncFunction"
+        ? await handler(req, res)
+        : handler(req, res);
+    } catch (error) {
+      res.status(500).send({
+        error: "Internal server error",
+        status: 500,
+        stack: error.toString(),
       });
-
-      await handler(req, res);
-    });
-
-    return;
-  }
-
-  app[method](pattern, (res: Response, req: Request) => {
-    middlewares.forEach((m) => m(req, res));
-    handler(req, res);
+    }
   });
 };
-
-export const [
-  get,
-  post,
-  put,
-  del,
-  options,
-  patch,
-  head,
-  connect,
-  trace,
-  any,
-  webSocket,
-] = Object.values(HTTP).map(getMethods);

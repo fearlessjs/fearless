@@ -11,14 +11,12 @@ export class Fearless {
   private middlewares: ((req: FRequest, res: FResponse) => void)[] = [];
 
   constructor(options?: Options) {
-    const { ssl, middlewares, handlers } = options || {
+    const { ssl, middlewares } = options || {
       ssl: {},
       middlewares: [],
-      handlers: [],
     };
 
     this.app = uWS.App(ssl ? ssl : {});
-    this.handlers = handlers;
     this.middlewares = middlewares;
   }
 
@@ -28,73 +26,88 @@ export class Fearless {
 
   public listen(port: number, cb?: () => void): void {
     try {
-      this.handlers.forEach((h: Handler) =>
-        handler(this.app, h, this.middlewares)
-      );
+      this.handlers.forEach((h: Handler) => {
+        handler(this.app, h, this.middlewares);
+        console.log("Route:", h.method, h.pattern, "is ready!");
+      });
 
       this.app.listen(port, () => {
-        console.log("Listening to port 3000");
-        this.handlers.forEach(({ pattern, method }) => {
-          console.log(`Listening to ${method.toUpperCase()} ${pattern}`);
-        });
+        if (cb) return cb();
+
+        console.log(`Server is running on http://localhost:${port}`);
       });
     } catch (error) {
       console.log(error);
     }
   }
 
-  public get(pattern: string, handler: (req: FRequest, res: FResponse) => void) {
-    this.handlers.push({ pattern, method: "get", handler });
-  }
-
-  public post(pattern: string, handler: (req: FRequest, res: FResponse) => void) {
-    this.handlers.push({ pattern, method: "post", handler });
-  }
-
-  public put(pattern: string, handler: (req: FRequest, res: FResponse) => void) {
-    this.handlers.push({ pattern, method: "put", handler });
-  }
-
-  public delete(
+  public get<T>(
     pattern: string,
-    handler: (req: FRequest, res: FResponse) => void
+    handler: (req: FRequest & T, res: FResponse) => void
   ) {
-    this.handlers.push({ pattern, method: "del", handler });
+    this.handlers.push({ pattern, method: "get", handler } as any);
   }
 
-  public options(
+  public post<T>(
     pattern: string,
-    handler: (req: FRequest, res: FResponse) => void
+    handler: (req: FRequest & T, res: FResponse) => void
   ) {
-    this.handlers.push({ pattern, method: "options", handler });
+    this.handlers.push({ pattern, method: "post", handler } as any);
   }
 
-  public head(pattern: string, handler: (req: FRequest, res: FResponse) => void) {
-    this.handlers.push({ pattern, method: "head", handler });
-  }
-
-  public patch(
+  public put<T>(
     pattern: string,
-    handler: (req: FRequest, res: FResponse) => void
+    handler: (req: FRequest & T, res: FResponse) => void
   ) {
-    this.handlers.push({ pattern, method: "patch", handler });
+    this.handlers.push({ pattern, method: "put", handler } as any);
   }
 
-  public connect(
+  public delete<T>(
     pattern: string,
-    handler: (req: FRequest, res: FResponse) => void
+    handler: (req: FRequest & T, res: FResponse) => void
   ) {
-    this.handlers.push({ pattern, method: "connect", handler });
+    this.handlers.push({ pattern, method: "del", handler } as any);
   }
 
-  public trace(
+  public options<T>(
     pattern: string,
-    handler: (req: FRequest, res: FResponse) => void
+    handler: (req: FRequest & T, res: FResponse) => void
   ) {
-    this.handlers.push({ pattern, method: "trace", handler });
+    this.handlers.push({ pattern, method: "options", handler } as any);
   }
 
-  public any(pattern: string, handler: (req: FRequest, res: FResponse) => void) {
-    this.handlers.push({ pattern, method: "any", handler });
+  public head<T>(
+    pattern: string,
+    handler: (req: FRequest & T, res: FResponse) => void
+  ) {
+    this.handlers.push({ pattern, method: "head", handler } as any);
+  }
+
+  public patch<T>(
+    pattern: string,
+    handler: (req: FRequest & T, res: FResponse) => void
+  ) {
+    this.handlers.push({ pattern, method: "patch", handler } as any);
+  }
+
+  public connect<T>(
+    pattern: string,
+    handler: (req: FRequest & T, res: FResponse) => void
+  ) {
+    this.handlers.push({ pattern, method: "connect", handler } as any);
+  }
+
+  public trace<T>(
+    pattern: string,
+    handler: (req: FRequest & T, res: FResponse) => void
+  ) {
+    this.handlers.push({ pattern, method: "trace", handler } as any);
+  }
+
+  public any<T>(
+    pattern: string,
+    handler: (req: FRequest & T, res: FResponse) => void
+  ) {
+    this.handlers.push({ pattern, method: "any", handler } as any);
   }
 }

@@ -48,7 +48,6 @@ export type Handler = {
 };
 
 export type Options = {
-  handlers?: Handler[] | [];
   ssl?: any;
   middlewares?: ((req: FRequest, res: FResponse) => void)[];
 };

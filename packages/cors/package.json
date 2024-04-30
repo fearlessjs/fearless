@@ -1,5 +1,5 @@
 {
-    "name": "@fearless/query-string",
+    "name": "@fearless/cors",
     "version": "0.2.0",
     "description": "CORS middleware for Node.js",
     "keywords": [

@@ -1,19 +1,18 @@
 import { readJson } from "./helper";
-import { FRequest, FResponse } from "./types";
+import { FRequest, FResponse, Method } from "./types";
 
 export const handler = (
   app: any,
-  // @ts-ignore
-  { pattern, method, handler, options, handlers }: Method,
-  middlewares: ((req: any, res: any) => void)[]
+  { pattern, method, handler }: Method,
+  middlewares: ((req: FRequest, res: FResponse) => void)[]
 ): void => {
   app[method](pattern, async (res: FResponse, req: FRequest) => {
-    middlewares.forEach((middleware) => {
-      middleware(req, res);
-    });
+    // @ts-ignore
+    req.pattern = pattern;
+    req.method = method;
 
     res.status = (code: number) => {
-      res.writeStatus(code.toString());
+      res.writeStatus(code.toString() || "200");
       return res;
     };
 
@@ -34,6 +33,10 @@ export const handler = (
     }
 
     try {
+      middlewares.forEach((middleware) => {
+        middleware(req, res);
+      });
+
       handler.constructor.name === "AsyncFunction"
         ? await handler(req, res)
         : handler(req, res);

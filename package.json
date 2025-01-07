@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "dev": "sucrase-node ./index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Rodrigo Oler",
@@ -10,5 +11,9 @@
   "description": "",
   "dependencies": {
     "uWebSockets.js": "github:uNetworking/uWebSockets.js#v20.51.0"
+  },
+  "devDependencies": {
+    "sucrase": "^3.35.0",
+    "typescript": "^5.7.2"
   }
 }
